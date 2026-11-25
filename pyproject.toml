@@ -1,0 +1,36 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "leakaudit"
+version = "0.1.0"
+description = "Leakage and shortcut audit for labelled text corpora: duplicates, surface-view recovery and zero-learning sentence lookup."
+readme = "README.md"
+requires-python = ">=3.9"
+license = "MIT"
+authors = [
+  { name = "Osman Can Çetlenbik", email = "osman.cetlenbik@cbu.edu.tr" },
+  { name = "Ahmet Ali Süzen" },
+]
+keywords = ["data leakage", "dataset audit", "near-duplicate detection", "benchmark validity", "shortcut learning", "nlp", "turkish"]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "Intended Audience :: Science/Research",
+  "Topic :: Scientific/Engineering :: Artificial Intelligence",
+  "Topic :: Text Processing :: Linguistic",
+]
+dependencies = ["numpy>=1.21", "pandas>=1.3", "scikit-learn>=1.0", "scipy>=1.7"]
+
+[project.optional-dependencies]
+parquet = ["pyarrow"]
+test = ["pytest"]
+
+[project.scripts]
+leakaudit = "leakaudit.cli:main"
+
+[project.urls]
+Paper = "https://doi.org/10.3390/app16168274"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/leakaudit"]
