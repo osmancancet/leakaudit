@@ -1,0 +1,133 @@
+{
+  "tool": "leakaudit",
+  "version": "0.1.0",
+  "corpus": "Turkish sentiment analysis dataset (test split)",
+  "text_column": "text",
+  "label_column": "label",
+  "metadata_columns": [
+    "dataset"
+  ],
+  "split_column": null,
+  "classes": {
+    "Negative": 5656,
+    "Notr": 17092,
+    "Positive": 26217
+  },
+  "n_documents": 48965,
+  "n_audited_layers_2_3": 20000,
+  "config": {
+    "seed": 42,
+    "sample_cap": 20000,
+    "near_dup_cap": 50000,
+    "jaccard_threshold": 0.8,
+    "folds": 5,
+    "thresholds": {
+      "min_template_uniqueness": 0.95,
+      "max_near_dup_pairs": 0,
+      "max_label_conflicting_groups": 0,
+      "max_normalized_recovery": 0.5,
+      "min_lookup_margin": 0.1
+    }
+  },
+  "layer1": {
+    "n_documents": 48965,
+    "template_uniqueness": 0.9992,
+    "template_uniqueness_per_class": {
+      "0": 0.9991,
+      "1": 0.9998,
+      "2": 0.999
+    },
+    "distinct_masked_templates": 48925,
+    "duplicate_groups": 34,
+    "documents_in_duplicate_groups": 74,
+    "label_conflicting_duplicate_groups": 6,
+    "near_dup_sample_size": 48965,
+    "near_dup_jaccard_threshold": 0.8,
+    "near_dup_pairs": 120,
+    "near_dup_pairs_non_identical": 72,
+    "near_dup_pairs_cross_label": 12,
+    "near_dup_max_jaccard": 1.0
+  },
+  "layer2": {
+    "full_text_macro_f1": 0.8882,
+    "chance_macro_f1": 0.3333,
+    "views": {
+      "first_3_tokens": {
+        "macro_f1": 0.6909,
+        "recovery_ratio": 0.7778,
+        "normalized_recovery": 0.6444
+      },
+      "first_5_tokens": {
+        "macro_f1": 0.7365,
+        "recovery_ratio": 0.8292,
+        "normalized_recovery": 0.7266
+      },
+      "first_10_tokens": {
+        "macro_f1": 0.8062,
+        "recovery_ratio": 0.9077,
+        "normalized_recovery": 0.8523
+      },
+      "punctuation_emoji_case_profile": {
+        "macro_f1": 0.2421,
+        "recovery_ratio": 0.2726,
+        "normalized_recovery": 0.0
+      },
+      "length_only": {
+        "macro_f1": 0.2911,
+        "recovery_ratio": 0.3278,
+        "normalized_recovery": 0.0
+      },
+      "metadata:dataset": {
+        "macro_f1": 0.8224,
+        "recovery_ratio": 0.9259,
+        "normalized_recovery": 0.8814
+      }
+    },
+    "max_normalized_recovery": 0.8814,
+    "max_view": "metadata:dataset"
+  },
+  "layer3": {
+    "test_size": 4000,
+    "sentence_inventory": {
+      "0": {
+        "sentence_types": 3491,
+        "exclusive_types": 3488,
+        "top40_exclusive_coverage": 0.0196
+      },
+      "1": {
+        "sentence_types": 5490,
+        "exclusive_types": 5490,
+        "top40_exclusive_coverage": 0.0057
+      },
+      "2": {
+        "sentence_types": 16092,
+        "exclusive_types": 16089,
+        "top40_exclusive_coverage": 0.0095
+      }
+    },
+    "lookup_rule_macro_f1": 0.234,
+    "trained_reference_macro_f1": 0.8855,
+    "trained_reference_accuracy": 0.9293,
+    "margin": 0.6515
+  },
+  "certificate": {
+    "passed": false,
+    "checks": {
+      "L1_template_uniqueness": true,
+      "L1_near_duplicates": false,
+      "L1_label_conflicts": false,
+      "L2_surface_views": false,
+      "L3_lookup_margin": true
+    },
+    "reasons": [
+      "120 near-duplicate pairs (Jaccard >= 0.8)",
+      "6 duplicate groups carry conflicting labels",
+      "view 'metadata:dataset' recovers 88% of above-chance full-text performance"
+    ]
+  },
+  "seconds": {
+    "layer1": 7.4,
+    "layer2": 45.1,
+    "layer3": 6.5
+  }
+}

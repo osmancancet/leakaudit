@@ -1,0 +1,121 @@
+{
+  "tool": "leakaudit",
+  "version": "0.1.0",
+  "corpus": "Turkish product reviews (sentiment)",
+  "text_column": "sentence",
+  "label_column": "sentiment",
+  "metadata_columns": [],
+  "split_column": null,
+  "classes": {
+    "0": 14879,
+    "1": 220265
+  },
+  "n_documents": 235144,
+  "n_audited_layers_2_3": 20000,
+  "config": {
+    "seed": 42,
+    "sample_cap": 20000,
+    "near_dup_cap": 50000,
+    "jaccard_threshold": 0.8,
+    "folds": 5,
+    "thresholds": {
+      "min_template_uniqueness": 0.95,
+      "max_near_dup_pairs": 0,
+      "max_label_conflicting_groups": 0,
+      "max_normalized_recovery": 0.5,
+      "min_lookup_margin": 0.1
+    }
+  },
+  "layer1": {
+    "n_documents": 235144,
+    "template_uniqueness": 0.9926,
+    "template_uniqueness_per_class": {
+      "0": 0.9971,
+      "1": 0.9926
+    },
+    "distinct_masked_templates": 233393,
+    "duplicate_groups": 1112,
+    "documents_in_duplicate_groups": 2863,
+    "label_conflicting_duplicate_groups": 80,
+    "near_dup_sample_size": 50000,
+    "near_dup_jaccard_threshold": 0.8,
+    "near_dup_pairs": 571,
+    "near_dup_pairs_non_identical": 420,
+    "near_dup_pairs_cross_label": 22,
+    "near_dup_max_jaccard": 1.0
+  },
+  "layer2": {
+    "full_text_macro_f1": 0.7413,
+    "chance_macro_f1": 0.5,
+    "views": {
+      "first_3_tokens": {
+        "macro_f1": 0.5668,
+        "recovery_ratio": 0.7646,
+        "normalized_recovery": 0.277
+      },
+      "first_5_tokens": {
+        "macro_f1": 0.5943,
+        "recovery_ratio": 0.8016,
+        "normalized_recovery": 0.3906
+      },
+      "first_10_tokens": {
+        "macro_f1": 0.654,
+        "recovery_ratio": 0.8822,
+        "normalized_recovery": 0.6382
+      },
+      "punctuation_emoji_case_profile": {
+        "macro_f1": 0.1586,
+        "recovery_ratio": 0.214,
+        "normalized_recovery": 0.0
+      },
+      "length_only": {
+        "macro_f1": 0.3488,
+        "recovery_ratio": 0.4705,
+        "normalized_recovery": 0.0
+      }
+    },
+    "length_ks_D": 0.0226,
+    "length_ks_p": 0.5778,
+    "max_normalized_recovery": 0.6382,
+    "max_view": "first_10_tokens"
+  },
+  "layer3": {
+    "test_size": 4000,
+    "sentence_inventory": {
+      "0": {
+        "sentence_types": 1813,
+        "exclusive_types": 1808,
+        "top40_exclusive_coverage": 0.0319
+      },
+      "1": {
+        "sentence_types": 27862,
+        "exclusive_types": 27857,
+        "top40_exclusive_coverage": 0.0087
+      }
+    },
+    "lookup_rule_macro_f1": 0.4837,
+    "trained_reference_macro_f1": 0.7357,
+    "trained_reference_accuracy": 0.9305,
+    "margin": 0.252
+  },
+  "certificate": {
+    "passed": false,
+    "checks": {
+      "L1_template_uniqueness": true,
+      "L1_near_duplicates": false,
+      "L1_label_conflicts": false,
+      "L2_surface_views": false,
+      "L3_lookup_margin": true
+    },
+    "reasons": [
+      "571 near-duplicate pairs (Jaccard >= 0.8)",
+      "80 duplicate groups carry conflicting labels",
+      "view 'first_10_tokens' recovers 64% of above-chance full-text performance"
+    ]
+  },
+  "seconds": {
+    "layer1": 12.6,
+    "layer2": 25.6,
+    "layer3": 3.9
+  }
+}

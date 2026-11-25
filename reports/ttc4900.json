@@ -1,0 +1,155 @@
+{
+  "tool": "leakaudit",
+  "version": "0.1.0",
+  "corpus": "TTC-4900 (news categorization)",
+  "text_column": "text",
+  "label_column": "category",
+  "metadata_columns": [],
+  "split_column": null,
+  "classes": {
+    "0": 700,
+    "1": 700,
+    "2": 700,
+    "3": 700,
+    "4": 700,
+    "5": 700,
+    "6": 700
+  },
+  "n_documents": 4900,
+  "n_audited_layers_2_3": 4900,
+  "config": {
+    "seed": 42,
+    "sample_cap": 20000,
+    "near_dup_cap": 50000,
+    "jaccard_threshold": 0.8,
+    "folds": 5,
+    "thresholds": {
+      "min_template_uniqueness": 0.95,
+      "max_near_dup_pairs": 0,
+      "max_label_conflicting_groups": 0,
+      "max_normalized_recovery": 0.5,
+      "min_lookup_margin": 0.1
+    }
+  },
+  "layer1": {
+    "n_documents": 4900,
+    "template_uniqueness": 0.9251,
+    "template_uniqueness_per_class": {
+      "0": 0.9857,
+      "1": 0.9671,
+      "2": 0.9786,
+      "3": 0.8086,
+      "4": 0.9029,
+      "5": 0.9086,
+      "6": 0.9257
+    },
+    "distinct_masked_templates": 4533,
+    "duplicate_groups": 320,
+    "documents_in_duplicate_groups": 687,
+    "label_conflicting_duplicate_groups": 1,
+    "near_dup_sample_size": 4900,
+    "near_dup_jaccard_threshold": 0.8,
+    "near_dup_pairs": 717,
+    "near_dup_pairs_non_identical": 298,
+    "near_dup_pairs_cross_label": 7,
+    "near_dup_max_jaccard": 1.0
+  },
+  "layer2": {
+    "full_text_macro_f1": 0.9165,
+    "chance_macro_f1": 0.1429,
+    "views": {
+      "first_3_tokens": {
+        "macro_f1": 0.5964,
+        "recovery_ratio": 0.6507,
+        "normalized_recovery": 0.5862
+      },
+      "first_5_tokens": {
+        "macro_f1": 0.6718,
+        "recovery_ratio": 0.733,
+        "normalized_recovery": 0.6837
+      },
+      "first_10_tokens": {
+        "macro_f1": 0.7815,
+        "recovery_ratio": 0.8527,
+        "normalized_recovery": 0.8255
+      },
+      "punctuation_emoji_case_profile": {
+        "macro_f1": 0.0866,
+        "recovery_ratio": 0.0945,
+        "normalized_recovery": 0.0
+      },
+      "length_only": {
+        "macro_f1": 0.1734,
+        "recovery_ratio": 0.1892,
+        "normalized_recovery": 0.0395
+      }
+    },
+    "max_normalized_recovery": 0.8255,
+    "max_view": "first_10_tokens"
+  },
+  "layer3": {
+    "test_size": 980,
+    "sentence_inventory": {
+      "0": {
+        "sentence_types": 580,
+        "exclusive_types": 580,
+        "top40_exclusive_coverage": 0.07
+      },
+      "1": {
+        "sentence_types": 601,
+        "exclusive_types": 601,
+        "top40_exclusive_coverage": 0.0843
+      },
+      "2": {
+        "sentence_types": 572,
+        "exclusive_types": 572,
+        "top40_exclusive_coverage": 0.0714
+      },
+      "3": {
+        "sentence_types": 661,
+        "exclusive_types": 659,
+        "top40_exclusive_coverage": 0.1257
+      },
+      "4": {
+        "sentence_types": 650,
+        "exclusive_types": 650,
+        "top40_exclusive_coverage": 0.1186
+      },
+      "5": {
+        "sentence_types": 635,
+        "exclusive_types": 635,
+        "top40_exclusive_coverage": 0.1271
+      },
+      "6": {
+        "sentence_types": 658,
+        "exclusive_types": 656,
+        "top40_exclusive_coverage": 0.1043
+      }
+    },
+    "lookup_rule_macro_f1": 0.2507,
+    "trained_reference_macro_f1": 0.9336,
+    "trained_reference_accuracy": 0.9337,
+    "margin": 0.6829
+  },
+  "certificate": {
+    "passed": false,
+    "checks": {
+      "L1_template_uniqueness": false,
+      "L1_near_duplicates": false,
+      "L1_label_conflicts": false,
+      "L2_surface_views": false,
+      "L3_lookup_margin": true
+    },
+    "reasons": [
+      "template uniqueness 0.9251 < 0.95",
+      "717 near-duplicate pairs (Jaccard >= 0.8)",
+      "1 duplicate groups carry conflicting labels",
+      "view 'first_10_tokens' recovers 83% of above-chance full-text performance"
+    ]
+  },
+  "seconds": {
+    "layer1": 5.7,
+    "layer2": 102.3,
+    "layer3": 19.4
+  }
+}
