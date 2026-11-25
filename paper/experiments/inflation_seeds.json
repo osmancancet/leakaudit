@@ -1,0 +1,134 @@
+{
+  "TTC-4900": {
+    "runs": [
+      {
+        "seed": 42,
+        "overlap": 0.201,
+        "random": 0.9336,
+        "grouped": 0.9183,
+        "inflation": 0.0153
+      },
+      {
+        "seed": 43,
+        "overlap": 0.1796,
+        "random": 0.9144,
+        "grouped": 0.9163,
+        "inflation": -0.0019
+      },
+      {
+        "seed": 44,
+        "overlap": 0.1827,
+        "random": 0.906,
+        "grouped": 0.9139,
+        "inflation": -0.0079
+      },
+      {
+        "seed": 45,
+        "overlap": 0.1939,
+        "random": 0.9162,
+        "grouped": 0.8976,
+        "inflation": 0.0185
+      },
+      {
+        "seed": 46,
+        "overlap": 0.1684,
+        "random": 0.9181,
+        "grouped": 0.9212,
+        "inflation": -0.003
+      }
+    ],
+    "inflation_mean": 0.0042,
+    "inflation_sd": 0.0119,
+    "random_mean": 0.9177,
+    "grouped_mean": 0.9135,
+    "overlap_mean": 0.1851
+  },
+  "Product reviews": {
+    "runs": [
+      {
+        "seed": 42,
+        "overlap": 0.011,
+        "random": 0.7497,
+        "grouped": 0.7429,
+        "inflation": 0.0067
+      },
+      {
+        "seed": 43,
+        "overlap": 0.011,
+        "random": 0.7462,
+        "grouped": 0.736,
+        "inflation": 0.0102
+      },
+      {
+        "seed": 44,
+        "overlap": 0.0099,
+        "random": 0.7299,
+        "grouped": 0.7476,
+        "inflation": -0.0176
+      },
+      {
+        "seed": 45,
+        "overlap": 0.0097,
+        "random": 0.739,
+        "grouped": 0.7313,
+        "inflation": 0.0077
+      },
+      {
+        "seed": 46,
+        "overlap": 0.009,
+        "random": 0.7484,
+        "grouped": 0.7526,
+        "inflation": -0.0042
+      }
+    ],
+    "inflation_mean": 0.0006,
+    "inflation_sd": 0.0116,
+    "random_mean": 0.7426,
+    "grouped_mean": 0.7421,
+    "overlap_mean": 0.0101
+  },
+  "Sentiment (test)": {
+    "runs": [
+      {
+        "seed": 42,
+        "overlap": 0.0029,
+        "random": 0.8987,
+        "grouped": 0.8985,
+        "inflation": 0.0002
+      },
+      {
+        "seed": 43,
+        "overlap": 0.0039,
+        "random": 0.9009,
+        "grouped": 0.8997,
+        "inflation": 0.0012
+      },
+      {
+        "seed": 44,
+        "overlap": 0.0035,
+        "random": 0.8897,
+        "grouped": 0.9056,
+        "inflation": -0.0159
+      },
+      {
+        "seed": 45,
+        "overlap": 0.0041,
+        "random": 0.8979,
+        "grouped": 0.899,
+        "inflation": -0.0012
+      },
+      {
+        "seed": 46,
+        "overlap": 0.0041,
+        "random": 0.8981,
+        "grouped": 0.9034,
+        "inflation": -0.0053
+      }
+    ],
+    "inflation_mean": -0.0042,
+    "inflation_sd": 0.007,
+    "random_mean": 0.8971,
+    "grouped_mean": 0.9012,
+    "overlap_mean": 0.0037
+  }
+}

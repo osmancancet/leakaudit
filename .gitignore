@@ -5,3 +5,7 @@ dist/
 build/
 data/
 reports/*.json.tmp
+paper/*.tex
+paper/*.cls
+paper/*.eps
+paper/*.zip
