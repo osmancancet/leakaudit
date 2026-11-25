@@ -47,6 +47,20 @@ The command exits with status 1 when the certificate fails, so it can gate a CI 
 
 Text normalisation is Turkish-aware (dotted/dotless *i*), but every check is language-independent.
 
+## Example audits
+
+The [`reports/`](reports) folder holds full reports for five public Turkish corpora. All five fail certification, each for a different reason:
+
+| Corpus | Documents | Main finding |
+|---|---:|---|
+| [TurkPhish v1](https://www.kaggle.com/datasets/osmancancet/turkish-phishing-email-dataset) | 7,504 | 59 masked templates; first 5 tokens and the sender column each separate the classes |
+| [TurkPhish v2](https://huggingface.co/datasets/OsmanCan/turkphish-v2) | 2,653 | Clean at document level; the subject line alone separates the classes |
+| [TTC-4900](https://huggingface.co/datasets/savasy/ttc4900) | 4,900 | Template uniqueness 0.925; 717 near-duplicate pairs |
+| [Turkish product reviews](https://huggingface.co/datasets/fthbrmnby/turkish_product_reviews) | 235,144 | 80 duplicate groups carry contradictory labels |
+| [Turkish sentiment (test)](https://huggingface.co/datasets/winvoker/turkish-sentiment-analysis-dataset) | 48,965 | The `dataset` provenance column alone recovers 93 % of full-text macro-F1 |
+
+`run_corpora.sh` reproduces the last three after downloading the Parquet files into `data/`. A surface view flagged in layer 2 is a shortcut the task *can* be solved by, not necessarily an error: in news categorization the first tokens are the headline. Read layer 2 as shortcut susceptibility.
+
 ## Citation
 
 If you use LeakAudit, please cite:
