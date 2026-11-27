@@ -28,12 +28,18 @@ class ContentAwareThresholds:
     the same length (content that every window carries is not a positional
     shortcut), and the lookup only where it is informative."""
     min_template_uniqueness: float = 0.95
-    max_near_dup_pairs_per_1000: float = 1.0
+    max_near_dup_docs_per_1000: float = 1.0
     max_label_conflicts_per_1000: float = 1.0
     max_opening_excess: float = 0.25
     max_normalized_recovery: float = 0.50
     max_lookup_recovery: float = 0.50
     max_lookup_fallback: float = 0.90
+
+
+def near_dup_docs_per_1000(L1) -> float:
+    """Documents with at least one (near-)duplicate per 1,000 sampled documents.
+    Unlike the pair count, this rate does not grow with the sample size."""
+    return 1000.0 * L1["near_dup_documents_affected"] / max(1, L1["near_dup_sample_size"])
 
 
 def content_aware_certificate(report: Dict, th: Optional[ContentAwareThresholds] = None) -> Dict:
@@ -42,19 +48,22 @@ def content_aware_certificate(report: Dict, th: Optional[ContentAwareThresholds]
     L1, L2, L3 = report["layer1"], report["layer2"], report["layer3"]
     n = max(1, report["n_documents"])
     views = L2["views"]
-    rw = views.get("random_window_10_tokens", {}).get("normalized_recovery", 0.0)
+    def window(k):  # random window of the same length as first_k, else the 10-token one
+        kk = k.split("_")[1]
+        return views.get(f"random_window_{kk}_tokens", views.get("random_window_10_tokens", {})).get(
+            "normalized_recovery", 0.0)
     worst, worst_view = float("-inf"), None
     for k, v in views.items():
-        if k == "random_window_10_tokens":
+        if k.startswith("random_window"):
             continue
-        score = v["normalized_recovery"] - rw if k.startswith("first_") else v["normalized_recovery"]
+        score = v["normalized_recovery"] - window(k) if k.startswith("first_") else v["normalized_recovery"]
         limit = th.max_opening_excess if k.startswith("first_") else th.max_normalized_recovery
         if score - limit > worst:
             worst, worst_view = score - limit, k
     informative = L3["lookup_fallback_rate"] <= th.max_lookup_fallback
     checks = {
         "L1_template_uniqueness": L1["template_uniqueness"] >= th.min_template_uniqueness,
-        "L1_near_duplicates": L1["near_dup_pairs_per_1000_docs"] <= th.max_near_dup_pairs_per_1000,
+        "L1_near_duplicates": near_dup_docs_per_1000(L1) <= th.max_near_dup_docs_per_1000,
         "L1_label_conflicts": 1000 * L1["label_conflicting_duplicate_groups"] / n <= th.max_label_conflicts_per_1000,
         "L2_surface_views": worst <= 0,
         "L3_lookup": (not informative) or L3["normalized_lookup_recovery"] <= th.max_lookup_recovery,

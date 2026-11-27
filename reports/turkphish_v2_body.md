@@ -29,7 +29,9 @@ Full-text macro-F1 (5-fold CV, grouped folds): 0.9763 (random folds: 0.9755); ch
 | first_3_tokens | 0.5030 | 0.515 | 0.006 | -0.034 to 0.047 |
 | first_5_tokens | 0.4883 | 0.500 | -0.025 | -0.065 to 0.013 |
 | first_10_tokens | 0.5612 | 0.575 | 0.129 | 0.088 to 0.167 |
-| random_window_10_tokens | 0.7208 | 0.738 | 0.464 | 0.428 to 0.501 |
+| random_window_3_tokens | 0.5909 | 0.605 | 0.191 | 0.154 to 0.228 |
+| random_window_5_tokens | 0.6195 | 0.635 | 0.251 | 0.214 to 0.290 |
+| random_window_10_tokens | 0.7144 | 0.732 | 0.450 | 0.415 to 0.487 |
 | punctuation_emoji_case_profile | 0.4881 | 0.500 | -0.025 | -0.067 to 0.015 |
 | length_only | 0.5000 | 0.512 | 0.000 | -0.043 to 0.039 |
 | metadata:konu | 0.9992 | 1.024 | 1.048 | 1.036 to 1.061 |

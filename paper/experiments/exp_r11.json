@@ -1,0 +1,62 @@
+{
+  "cleanlab": "2.9.0",
+  "seed": 42,
+  "cap": 20000,
+  "TTC-4900": {
+    "n": 4900,
+    "leakaudit_dup_docs": 1100,
+    "leakaudit_conflict_docs": 14,
+    "cleanlab_near_dup_docs": 1308,
+    "cleanlab_label_issue_docs": 73,
+    "near_dup_both": 1100,
+    "cleanlab_near_dup_not_leakaudit": 208,
+    "leakaudit_dup_not_cleanlab": 0,
+    "conflict_docs_flagged_label_issue": 5,
+    "cleanlab_only_max_jaccard_bins": {
+      "ge_0.8": 0,
+      "0.5_0.8": 119,
+      "0.2_0.5": 83,
+      "lt_0.2": 6
+    },
+    "cleanlab_only_median_max_jaccard": 0.5448,
+    "cleanlab_only_with_other_label_partner": 7
+  },
+  "Product reviews": {
+    "n": 20000,
+    "leakaudit_dup_docs": 134,
+    "leakaudit_conflict_docs": 8,
+    "cleanlab_near_dup_docs": 670,
+    "cleanlab_label_issue_docs": 852,
+    "near_dup_both": 115,
+    "cleanlab_near_dup_not_leakaudit": 555,
+    "leakaudit_dup_not_cleanlab": 19,
+    "conflict_docs_flagged_label_issue": 4,
+    "cleanlab_only_max_jaccard_bins": {
+      "ge_0.8": 0,
+      "0.5_0.8": 117,
+      "0.2_0.5": 190,
+      "lt_0.2": 248
+    },
+    "cleanlab_only_median_max_jaccard": 0.2222,
+    "cleanlab_only_with_other_label_partner": 91
+  },
+  "Sentiment (test)": {
+    "n": 20000,
+    "leakaudit_dup_docs": 36,
+    "leakaudit_conflict_docs": 7,
+    "cleanlab_near_dup_docs": 1912,
+    "cleanlab_label_issue_docs": 552,
+    "near_dup_both": 35,
+    "cleanlab_near_dup_not_leakaudit": 1877,
+    "leakaudit_dup_not_cleanlab": 1,
+    "conflict_docs_flagged_label_issue": 4,
+    "cleanlab_only_max_jaccard_bins": {
+      "ge_0.8": 0,
+      "0.5_0.8": 154,
+      "0.2_0.5": 400,
+      "lt_0.2": 1323
+    },
+    "cleanlab_only_median_max_jaccard": 0.1071,
+    "cleanlab_only_with_other_label_partner": 396
+  }
+}

@@ -29,7 +29,9 @@ Full-text macro-F1 (5-fold CV, grouped folds): 0.9989 (random folds: 0.9985); ch
 | first_3_tokens | 0.5281 | 0.529 | 0.056 | 0.019 to 0.098 |
 | first_5_tokens | 0.8573 | 0.858 | 0.716 | 0.689 to 0.742 |
 | first_10_tokens | 0.9985 | 1.000 | 0.999 | 0.996 to 1.002 |
-| random_window_10_tokens | 0.7109 | 0.712 | 0.423 | 0.389 to 0.458 |
+| random_window_3_tokens | 0.6056 | 0.606 | 0.212 | 0.172 to 0.249 |
+| random_window_5_tokens | 0.6433 | 0.644 | 0.287 | 0.252 to 0.323 |
+| random_window_10_tokens | 0.7320 | 0.733 | 0.465 | 0.430 to 0.497 |
 | punctuation_emoji_case_profile | 0.4978 | 0.498 | -0.004 | -0.044 to 0.029 |
 | length_only | 0.4881 | 0.489 | -0.024 | -0.067 to 0.011 |
 

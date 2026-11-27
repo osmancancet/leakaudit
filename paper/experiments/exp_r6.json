@@ -1,0 +1,11 @@
+{
+  "n_train": 120000,
+  "n_test": 7600,
+  "train_uniqueness": 0.9983,
+  "train_dup_groups": 196,
+  "train_docs_in_dup_groups": 405,
+  "train_conflict_groups": 22,
+  "test_in_train": 13,
+  "test_in_train_share": 0.0017,
+  "test_in_train_label_agreement_strict": 1.0
+}

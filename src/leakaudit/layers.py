@@ -121,14 +121,34 @@ def recovery(f_view: float, f_full: float, chance: float) -> float:
     return (f_view - chance) / (f_full - chance)
 
 
-def _boot_recovery(y, p_view, p_full, chance, seed) -> Tuple[float, float]:
-    """95% percentile interval of R from a paired bootstrap over documents."""
+def _boot_index(rng, n, groups=None):
+    """Bootstrap sample of positions; resamples whole duplicate groups when given."""
+    if groups is None:
+        return rng.randint(0, n, n)
+    members = _GROUP_CACHE.get(id(groups))
+    if members is None or members[0] is not groups:
+        g = defaultdict(list)
+        for i, k in enumerate(groups):
+            g[k].append(i)
+        members = (groups, [np.array(v) for v in g.values()])
+        _GROUP_CACHE.clear(); _GROUP_CACHE[id(groups)] = members
+    blocks = members[1]
+    pick = rng.randint(0, len(blocks), len(blocks))
+    return np.concatenate([blocks[j] for j in pick])
+
+
+_GROUP_CACHE: Dict = {}
+
+
+def _boot_recovery(y, p_view, p_full, chance, seed, groups=None) -> Tuple[float, float]:
+    """95% percentile interval of R from a paired bootstrap over duplicate groups
+    (over documents when no groups are given)."""
     if p_view is None or p_full is None:
         return float("nan"), float("nan")
     rng = np.random.RandomState(seed)
     n, vals = len(y), []
     for _ in range(BOOTSTRAP):
-        b = rng.randint(0, n, n)
+        b = _boot_index(rng, n, groups)
         vals.append(recovery(_f1(y[b], p_view[b]), _f1(y[b], p_full[b]), chance))
     vals = np.array([v for v in vals if not np.isnan(v)])
     if not len(vals):
@@ -193,6 +213,14 @@ def layer1(texts: Sequence[str], labels: np.ndarray, near_dup_cap: int = 50000,
     if identical_pairs:
         best = 1.0
 
+    # sampled documents that have an identical or near-duplicate partner inside the sample
+    affected = set()
+    for m in in_sample.values():
+        if len(m) > 1:
+            affected.update(m)
+    for a, b, _ in rep_pairs:
+        affected.update(in_sample[masked[a]]); affected.update(in_sample[masked[b]])
+
     edges = [(g[0], j) for g in dup_groups for j in g[1:]] + [(a, b) for a, b, _ in rep_pairs]
     group_ids = _union_find(n, edges)
     total_pairs = identical_pairs + non_identical
@@ -210,7 +238,7 @@ def layer1(texts: Sequence[str], labels: np.ndarray, near_dup_cap: int = 50000,
         "near_dup_pairs_identical": int(identical_pairs),
         "near_dup_pairs_non_identical": int(non_identical),
         "near_dup_pairs_cross_label": int(cross_label),
-        "near_dup_documents_affected": int(sum(np.bincount(group_ids)[group_ids] > 1)),
+        "near_dup_documents_affected": int(len(affected)),
         "near_dup_pairs_per_1000_docs": round(1000 * total_pairs / max(1, len(sample)), 3),
         "near_dup_max_jaccard": round(best, 4),
         "lsh_buckets_skipped": int(skipped),
@@ -236,15 +264,15 @@ def layer2(texts: Sequence[str], y: np.ndarray, metadata: Optional[Mapping[str, 
     view_inputs: Dict[str, Tuple[Pipeline, List[str]]] = {}
     for k in first_k:
         view_inputs[f"first_{k}_tokens"] = (_word_model((1, 2), 1), [T.first_tokens(t, k) for t in texts])
-    # control view: a window of the same length starting at a random position
+    # control views: for each k, a window of k tokens starting at a random position
     rng = np.random.RandomState(seed)
-    win = max(first_k)
-    rnd = []
-    for t in texts:
-        toks = T.mask(t).split(" ")
-        s = rng.randint(0, max(1, len(toks) - win + 1))
-        rnd.append(" ".join(toks[s:s + win]))
-    view_inputs[f"random_window_{win}_tokens"] = (_word_model((1, 2), 1), rnd)
+    for win in first_k:
+        rnd = []
+        for t in texts:
+            toks = T.mask(t).split(" ")
+            s = rng.randint(0, max(1, len(toks) - win + 1))
+            rnd.append(" ".join(toks[s:s + win]))
+        view_inputs[f"random_window_{win}_tokens"] = (_word_model((1, 2), 1), rnd)
     profiles = []
     for t in texts:
         s = str(t)
@@ -258,16 +286,20 @@ def layer2(texts: Sequence[str], y: np.ndarray, metadata: Optional[Mapping[str, 
     for name, values in (metadata or {}).items():
         view_inputs[f"metadata:{name}"] = (_metadata_model(), ["v_" + str(v).replace(" ", "_") for v in values])
 
+    # empirical null: the same view model refitted on permuted labels (same folds)
+    y_perm = np.random.RandomState(seed + 1).permutation(y)
     views = {}
     for k, (model, X) in view_inputs.items():
         p = _oof(model, X, y, cv)
         f = _f1(y, p)
         r = recovery(f, full, chance)
-        lo, hi = _boot_recovery(y, p, p_full, chance, seed)
+        lo, hi = _boot_recovery(y, p, p_full, chance, seed, groups)
+        f_null = _f1(y_perm, _oof(model, X, y_perm, cv))
         views[k] = {"macro_f1": round(f, 4),
                     "recovery_ratio": round(f / full, 4) if full else float("nan"),
                     "normalized_recovery": round(r, 4),
-                    "normalized_recovery_ci95": [round(lo, 4), round(hi, 4)]}
+                    "normalized_recovery_ci95": [round(lo, 4), round(hi, 4)],
+                    "permuted_label_macro_f1": round(f_null, 4)}
 
     # the same reference with plain (ungrouped) folds, to show what grouping changes
     p_full_rand = _oof(_full_text_model(), texts, y, _folds(y, None, folds, seed))
@@ -343,7 +375,7 @@ def layer3(texts: Sequence[str], y: np.ndarray, train_idx: Optional[np.ndarray] 
     rng = np.random.RandomState(seed)
     m_b, r_b = [], []
     for _ in range(BOOTSTRAP):
-        b = rng.randint(0, len(yt), len(yt))
+        b = _boot_index(rng, len(yt), None if groups is None else np.asarray(groups)[test_idx])
         fl, fr = _f1(yt[b], preds[b]), _f1(yt[b], ref_pred[b])
         m_b.append(fr - fl)
         r_b.append(recovery(fl, fr, chance))

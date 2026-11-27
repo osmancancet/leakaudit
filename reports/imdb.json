@@ -1,0 +1,220 @@
+{
+  "tool": "leakaudit",
+  "version": "0.2.0",
+  "corpus": "IMDB (training split)",
+  "text_column": "text",
+  "label_column": "label",
+  "metadata_columns": [],
+  "split_column": null,
+  "classes": {
+    "0": 12500,
+    "1": 12500
+  },
+  "n_documents": 25000,
+  "n_audited_layers_2_3": 20000,
+  "config": {
+    "seed": 42,
+    "sample_cap": 20000,
+    "near_dup_cap": 50000,
+    "jaccard_threshold": 0.8,
+    "folds": 5,
+    "grouped_splits": true,
+    "language": "generic",
+    "thresholds": {
+      "min_template_uniqueness": 0.95,
+      "max_near_dup_pairs": 0,
+      "max_label_conflicting_groups": 0,
+      "max_normalized_recovery": 0.5,
+      "max_lookup_recovery": 0.5
+    }
+  },
+  "layer1": {
+    "n_documents": 25000,
+    "template_uniqueness": 0.9962,
+    "template_uniqueness_per_class": {
+      "0": 0.9946,
+      "1": 0.9978
+    },
+    "distinct_masked_templates": 24904,
+    "duplicate_groups": 92,
+    "documents_in_duplicate_groups": 188,
+    "label_conflicting_duplicate_groups": 0,
+    "near_dup_sample_size": 25000,
+    "near_dup_jaccard_threshold": 0.8,
+    "near_dup_pairs": 123,
+    "near_dup_pairs_identical": 100,
+    "near_dup_pairs_non_identical": 23,
+    "near_dup_pairs_cross_label": 0,
+    "near_dup_documents_affected": 234,
+    "near_dup_pairs_per_1000_docs": 4.92,
+    "near_dup_max_jaccard": 1.0,
+    "lsh_buckets_skipped": 0,
+    "split_groups": 24881
+  },
+  "layer2": {
+    "folds": "grouped",
+    "fold_seed": 42,
+    "full_text_macro_f1": 0.8923,
+    "full_text_macro_f1_random_folds": 0.8933,
+    "chance_macro_f1": 0.5,
+    "views": {
+      "first_3_tokens": {
+        "macro_f1": 0.5992,
+        "recovery_ratio": 0.6716,
+        "normalized_recovery": 0.253,
+        "normalized_recovery_ci95": [
+          0.237,
+          0.2694
+        ],
+        "permuted_label_macro_f1": 0.5031
+      },
+      "first_5_tokens": {
+        "macro_f1": 0.6269,
+        "recovery_ratio": 0.7026,
+        "normalized_recovery": 0.3235,
+        "normalized_recovery_ci95": [
+          0.3077,
+          0.3399
+        ],
+        "permuted_label_macro_f1": 0.4964
+      },
+      "first_10_tokens": {
+        "macro_f1": 0.6648,
+        "recovery_ratio": 0.7451,
+        "normalized_recovery": 0.4202,
+        "normalized_recovery_ci95": [
+          0.4057,
+          0.4362
+        ],
+        "permuted_label_macro_f1": 0.4969
+      },
+      "random_window_3_tokens": {
+        "macro_f1": 0.5551,
+        "recovery_ratio": 0.6221,
+        "normalized_recovery": 0.1403,
+        "normalized_recovery_ci95": [
+          0.1224,
+          0.1574
+        ],
+        "permuted_label_macro_f1": 0.4985
+      },
+      "random_window_5_tokens": {
+        "macro_f1": 0.5751,
+        "recovery_ratio": 0.6445,
+        "normalized_recovery": 0.1915,
+        "normalized_recovery_ci95": [
+          0.1732,
+          0.2081
+        ],
+        "permuted_label_macro_f1": 0.5035
+      },
+      "random_window_10_tokens": {
+        "macro_f1": 0.6166,
+        "recovery_ratio": 0.691,
+        "normalized_recovery": 0.2972,
+        "normalized_recovery_ci95": [
+          0.2798,
+          0.3126
+        ],
+        "permuted_label_macro_f1": 0.5015
+      },
+      "punctuation_emoji_case_profile": {
+        "macro_f1": 0.492,
+        "recovery_ratio": 0.5514,
+        "normalized_recovery": -0.0204,
+        "normalized_recovery_ci95": [
+          -0.0379,
+          -0.0045
+        ],
+        "permuted_label_macro_f1": 0.4915
+      },
+      "length_only": {
+        "macro_f1": 0.5024,
+        "recovery_ratio": 0.563,
+        "normalized_recovery": 0.006,
+        "normalized_recovery_ci95": [
+          -0.01,
+          0.024
+        ],
+        "permuted_label_macro_f1": 0.5016
+      }
+    },
+    "length_ks_D": 0.0238,
+    "length_ks_p": 0.0069,
+    "max_normalized_recovery": 0.4202,
+    "max_view": "first_10_tokens"
+  },
+  "layer3": {
+    "split": "grouped",
+    "test_size": 4000,
+    "sentence_inventory": {
+      "0": {
+        "sentence_types": 82869,
+        "exclusive_types": 82808,
+        "top40_exclusive_coverage": 0.0095
+      },
+      "1": {
+        "sentence_types": 80620,
+        "exclusive_types": 80559,
+        "top40_exclusive_coverage": 0.007
+      }
+    },
+    "lookup_rule_macro_f1": 0.3591,
+    "lookup_fallback_rate": 0.963,
+    "majority_constant_macro_f1": 0.3341,
+    "trained_reference_macro_f1": 0.8932,
+    "trained_reference_accuracy": 0.8932,
+    "margin": 0.5341,
+    "margin_ci95": [
+      0.5208,
+      0.5486
+    ],
+    "normalized_lookup_recovery": -0.3583,
+    "normalized_lookup_recovery_ci95": [
+      -0.3838,
+      -0.331
+    ]
+  },
+  "certificate": {
+    "passed": false,
+    "checks": {
+      "L1_template_uniqueness": true,
+      "L1_near_duplicates": false,
+      "L1_label_conflicts": true,
+      "L2_surface_views": true,
+      "L3_lookup": true
+    },
+    "reasons": [
+      "123 near-duplicate pairs (Jaccard >= 0.8)"
+    ],
+    "warnings": [
+      "the sentence lookup fell back to the majority class for 96% of test documents; check L3 is not informative here"
+    ]
+  },
+  "certificate_content_aware": {
+    "passed": false,
+    "checks": {
+      "L1_template_uniqueness": true,
+      "L1_near_duplicates": false,
+      "L1_label_conflicts": true,
+      "L2_surface_views": true,
+      "L3_lookup": true
+    },
+    "worst_view": "first_5_tokens",
+    "lookup_informative": false,
+    "thresholds": {
+      "min_template_uniqueness": 0.95,
+      "max_near_dup_docs_per_1000": 1.0,
+      "max_label_conflicts_per_1000": 1.0,
+      "max_opening_excess": 0.25,
+      "max_normalized_recovery": 0.5,
+      "max_lookup_recovery": 0.5,
+      "max_lookup_fallback": 0.9
+    }
+  },
+  "seconds": {
+    "layer1": 46.2,
+    "layer2": 694.6,
+    "layer3": 51.2
+  }
+}

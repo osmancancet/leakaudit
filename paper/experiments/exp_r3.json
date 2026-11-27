@@ -25,7 +25,7 @@
     "conflicts": 0,
     "full_f1": 0.9069,
     "first10_R": 0.7757,
-    "random_window_R": 0.4468,
+    "random_window_R": 0.4502,
     "warnings": [
       "the sentence lookup fell back to the majority class for 100% of test documents; check L3 is not informative here"
     ]
@@ -55,10 +55,10 @@
     "conflicts": 0,
     "full_f1": 0.7443,
     "first10_R": 0.6461,
-    "random_window_R": 0.5862,
+    "random_window_R": 0.5433,
     "warnings": [
       "the sentence lookup fell back to the majority class for 98% of test documents; check L3 is not informative here"
     ]
   },
-  "seconds": 789.1
+  "seconds": 791.4
 }

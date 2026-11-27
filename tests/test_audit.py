@@ -119,3 +119,20 @@ def test_content_aware_certificate_is_reported():
     ca = r["certificate_content_aware"]
     assert set(ca["checks"]) == set(r["certificate"]["checks"])
     assert ca["checks"]["L1_near_duplicates"]
+
+
+def test_matched_windows_null_and_group_bootstrap():
+    import numpy as np
+    from leakaudit.layers import _boot_index
+    rep = audit(_diverse_corpus(), "text", "label")
+    views = rep["layer2"]["views"]
+    for k in (3, 5, 10):
+        assert f"random_window_{k}_tokens" in views
+    chance = rep["layer2"]["chance_macro_f1"]
+    for v in views.values():  # permuted labels carry no signal: the null never clearly exceeds 1/C
+        assert v["permuted_label_macro_f1"] <= chance + 0.05
+    # a group bootstrap draws whole groups: members of a group appear equally often
+    groups = np.array([0, 0, 0, 1, 2, 3])
+    b = _boot_index(np.random.RandomState(0), len(groups), groups)
+    counts = np.bincount(b, minlength=6)
+    assert counts[0] == counts[1] == counts[2]

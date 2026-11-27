@@ -1,0 +1,139 @@
+{
+  "seed": 42,
+  "ngram": 4,
+  "refit_seeds": 10,
+  "A_null": {
+    "TurkPhish v1": {
+      "null_other_R_max": -0.0264,
+      "null_opening_excess": -0.0074
+    },
+    "TurkPhish v2": {
+      "null_other_R_max": 0.0062,
+      "null_opening_excess": -0.0074
+    },
+    "TTC-4900": {
+      "null_other_R_max": -0.0121,
+      "null_opening_excess": 0.0003
+    },
+    "Product reviews": {
+      "null_other_R_max": -0.0077,
+      "null_opening_excess": 0.0167
+    },
+    "Sentiment (test)": {
+      "null_other_R_max": -0.0393,
+      "null_opening_excess": 0.0157
+    },
+    "AG News": {
+      "null_other_R_max": -0.0038,
+      "null_opening_excess": -0.0131
+    },
+    "summary": {
+      "n_other": 14,
+      "other_flagged": 0,
+      "other_max": 0.0062,
+      "n_opening": 6,
+      "opening_flagged": 0,
+      "opening_max": 0.0167
+    }
+  },
+  "B_ngram": {
+    "TurkPhish v1": {
+      "fallback": 0.0,
+      "lookup_f1": 1.0,
+      "reference_f1": 1.0,
+      "RL": 1.0,
+      "split": "random (grouped partition infeasible)"
+    },
+    "TurkPhish v2": {
+      "fallback": 0.0,
+      "lookup_f1": 0.9868,
+      "reference_f1": 1.0,
+      "RL": 0.9736,
+      "split": "grouped"
+    },
+    "TTC-4900": {
+      "fallback": 0.4122,
+      "lookup_f1": 0.5158,
+      "reference_f1": 0.9171,
+      "RL": 0.4817,
+      "split": "grouped"
+    },
+    "Product reviews": {
+      "fallback": 0.7897,
+      "lookup_f1": 0.4918,
+      "reference_f1": 0.7435,
+      "RL": -0.0335,
+      "split": "grouped"
+    },
+    "Sentiment (test)": {
+      "fallback": 0.9035,
+      "lookup_f1": 0.2731,
+      "reference_f1": 0.8934,
+      "RL": -0.1076,
+      "split": "grouped"
+    },
+    "AG News": {
+      "fallback": 0.5521,
+      "lookup_f1": 0.4941,
+      "reference_f1": 0.8917,
+      "RL": 0.3803,
+      "split": "grouped"
+    }
+  },
+  "C_refit": {
+    "TurkPhish v2": {
+      "values": [
+        0.5235,
+        0.5497,
+        0.5244,
+        0.5319,
+        0.5317,
+        0.5404,
+        0.5629,
+        0.5592,
+        0.5423,
+        0.5713
+      ],
+      "mean": 0.5437,
+      "min": 0.5235,
+      "max": 0.5713,
+      "n_above": 10
+    },
+    "TTC-4900": {
+      "values": [
+        0.3162,
+        0.3156,
+        0.3149,
+        0.3103,
+        0.3045,
+        0.2915,
+        0.3114,
+        0.3072,
+        0.3045,
+        0.3039
+      ],
+      "mean": 0.308,
+      "min": 0.2915,
+      "max": 0.3162,
+      "n_above": 10
+    },
+    "AG News": {
+      "values": [
+        0.2495,
+        0.2684,
+        0.2563,
+        0.2514,
+        0.263,
+        0.2596,
+        0.2653,
+        0.2589,
+        0.251,
+        0.2636
+      ],
+      "mean": 0.2587,
+      "min": 0.2495,
+      "max": 0.2684,
+      "n_above": 9
+    }
+  }
+}

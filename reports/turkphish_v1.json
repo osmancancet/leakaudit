@@ -64,9 +64,10 @@
         "recovery_ratio": 0.9206,
         "normalized_recovery": 0.8413,
         "normalized_recovery_ci95": [
-          0.8265,
-          0.8547
-        ]
+          -0.2,
+          1.0
+        ],
+        "permuted_label_macro_f1": 0.4412
       },
       "first_5_tokens": {
         "macro_f1": 1.0,
@@ -75,7 +76,8 @@
         "normalized_recovery_ci95": [
           1.0,
           1.0
-        ]
+        ],
+        "permuted_label_macro_f1": 0.4402
       },
       "first_10_tokens": {
         "macro_f1": 1.0,
@@ -84,43 +86,68 @@
         "normalized_recovery_ci95": [
           1.0,
           1.0
-        ]
+        ],
+        "permuted_label_macro_f1": 0.432
       },
-      "random_window_10_tokens": {
+      "random_window_3_tokens": {
+        "macro_f1": 0.9936,
+        "recovery_ratio": 0.9936,
+        "normalized_recovery": 0.9871,
+        "normalized_recovery_ci95": [
+          -0.2,
+          0.9917
+        ],
+        "permuted_label_macro_f1": 0.4505
+      },
+      "random_window_5_tokens": {
         "macro_f1": 0.9996,
         "recovery_ratio": 0.9996,
         "normalized_recovery": 0.9992,
         "normalized_recovery_ci95": [
-          0.9979,
+          -0.5,
           1.0
-        ]
+        ],
+        "permuted_label_macro_f1": 0.4439
+      },
+      "random_window_10_tokens": {
+        "macro_f1": 0.9998,
+        "recovery_ratio": 0.9998,
+        "normalized_recovery": 0.9996,
+        "normalized_recovery_ci95": [
+          -0.2,
+          1.0
+        ],
+        "permuted_label_macro_f1": 0.4536
       },
       "punctuation_emoji_case_profile": {
         "macro_f1": 0.6074,
         "recovery_ratio": 0.6074,
         "normalized_recovery": 0.2148,
         "normalized_recovery_ci95": [
-          0.1911,
-          0.2386
-        ]
+          -0.7143,
+          0.2616
+        ],
+        "permuted_label_macro_f1": 0.3943
       },
       "length_only": {
         "macro_f1": 0.8248,
         "recovery_ratio": 0.8248,
         "normalized_recovery": 0.6496,
         "normalized_recovery_ci95": [
-          0.6302,
-          0.6707
-        ]
+          -0.7143,
+          0.7321
+        ],
+        "permuted_label_macro_f1": 0.4712
       },
       "metadata:Gönderen": {
         "macro_f1": 0.9998,
         "recovery_ratio": 0.9998,
         "normalized_recovery": 0.9996,
         "normalized_recovery_ci95": [
-          0.9987,
+          -0.2,
           1.0
-        ]
+        ],
+        "permuted_label_macro_f1": 0.4868
       }
     },
     "length_ks_D": 0.7661,
@@ -191,7 +218,7 @@
     "lookup_informative": true,
     "thresholds": {
       "min_template_uniqueness": 0.95,
-      "max_near_dup_pairs_per_1000": 1.0,
+      "max_near_dup_docs_per_1000": 1.0,
       "max_label_conflicts_per_1000": 1.0,
       "max_opening_excess": 0.25,
       "max_normalized_recovery": 0.5,
@@ -201,7 +228,7 @@
   },
   "seconds": {
     "layer1": 0.7,
-    "layer2": 36.6,
-    "layer3": 3.4
+    "layer2": 53.6,
+    "layer3": 3.7
   }
 }

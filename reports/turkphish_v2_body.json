@@ -67,7 +67,8 @@
         "normalized_recovery_ci95": [
           -0.0337,
           0.0467
-        ]
+        ],
+        "permuted_label_macro_f1": 0.4835
       },
       "first_5_tokens": {
         "macro_f1": 0.4883,
@@ -76,7 +77,8 @@
         "normalized_recovery_ci95": [
           -0.0646,
           0.0129
-        ]
+        ],
+        "permuted_label_macro_f1": 0.4858
       },
       "first_10_tokens": {
         "macro_f1": 0.5612,
@@ -85,16 +87,38 @@
         "normalized_recovery_ci95": [
           0.088,
           0.1667
-        ]
+        ],
+        "permuted_label_macro_f1": 0.486
+      },
+      "random_window_3_tokens": {
+        "macro_f1": 0.5909,
+        "recovery_ratio": 0.6053,
+        "normalized_recovery": 0.1909,
+        "normalized_recovery_ci95": [
+          0.1542,
+          0.2281
+        ],
+        "permuted_label_macro_f1": 0.4988
+      },
+      "random_window_5_tokens": {
+        "macro_f1": 0.6195,
+        "recovery_ratio": 0.6346,
+        "normalized_recovery": 0.251,
+        "normalized_recovery_ci95": [
+          0.2138,
+          0.2901
+        ],
+        "permuted_label_macro_f1": 0.4771
       },
       "random_window_10_tokens": {
-        "macro_f1": 0.7208,
-        "recovery_ratio": 0.7383,
-        "normalized_recovery": 0.4636,
+        "macro_f1": 0.7144,
+        "recovery_ratio": 0.7318,
+        "normalized_recovery": 0.4501,
         "normalized_recovery_ci95": [
-          0.4278,
-          0.5014
-        ]
+          0.4155,
+          0.4866
+        ],
+        "permuted_label_macro_f1": 0.521
       },
       "punctuation_emoji_case_profile": {
         "macro_f1": 0.4881,
@@ -103,7 +127,8 @@
         "normalized_recovery_ci95": [
           -0.0672,
           0.0149
-        ]
+        ],
+        "permuted_label_macro_f1": 0.4581
       },
       "length_only": {
         "macro_f1": 0.5,
@@ -112,7 +137,8 @@
         "normalized_recovery_ci95": [
           -0.043,
           0.0386
-        ]
+        ],
+        "permuted_label_macro_f1": 0.4888
       },
       "metadata:konu": {
         "macro_f1": 0.9992,
@@ -121,7 +147,8 @@
         "normalized_recovery_ci95": [
           1.036,
           1.0609
-        ]
+        ],
+        "permuted_label_macro_f1": 0.5216
       }
     },
     "length_ks_D": 0.0145,
@@ -188,7 +215,7 @@
     "lookup_informative": true,
     "thresholds": {
       "min_template_uniqueness": 0.95,
-      "max_near_dup_pairs_per_1000": 1.0,
+      "max_near_dup_docs_per_1000": 1.0,
       "max_label_conflicts_per_1000": 1.0,
       "max_opening_excess": 0.25,
       "max_normalized_recovery": 0.5,
@@ -197,8 +224,8 @@
     }
   },
   "seconds": {
-    "layer1": 6.8,
-    "layer2": 40.8,
-    "layer3": 4.3
+    "layer1": 8.2,
+    "layer2": 50.6,
+    "layer3": 6.9
   }
 }

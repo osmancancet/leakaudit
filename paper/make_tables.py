@@ -232,7 +232,7 @@ for s, v in E7["sources"].items():
 
 # ------------------------------------------------------------------ certificate profiles
 sys.path.insert(0, str(ROOT / "src"))
-from leakaudit.audit import content_aware_certificate  # noqa: E402
+from leakaudit.audit import content_aware_certificate, near_dup_docs_per_1000  # noqa: E402
 
 X3 = json.load(open(EXP / "exp_r3.json"))
 RC = {"ttc4900_clean": json.load(open(EXP / "ttc4900_clean_report.json")),
@@ -244,14 +244,15 @@ LET = [("L1_template_uniqueness", "D"), ("L1_near_duplicates", "N"), ("L1_label_
 def prof_row(name, r):
     L1, L2, L3 = r["layer1"], r["layer2"], r["layer3"]
     v = L2["views"]
-    rw = v["random_window_10_tokens"]["normalized_recovery"]
-    exc = max(d["normalized_recovery"] - rw for k, d in v.items() if k.startswith("first_"))
-    oth = max(d["normalized_recovery"] for k, d in v.items() if not k.startswith("first_") and k != "random_window_10_tokens")
+    def rw(k):
+        return v.get(f"random_window_{k.split('_')[1]}_tokens", v["random_window_10_tokens"])["normalized_recovery"]
+    exc = max(d["normalized_recovery"] - rw(k) for k, d in v.items() if k.startswith("first_"))
+    oth = max(d["normalized_recovery"] for k, d in v.items() if not k.startswith(("first_", "random_window")))
     ca = content_aware_certificate(r)
     strict = ", ".join(x for k, x in LET if not r["certificate"]["checks"][k]) or "none"
     cont = ", ".join(x for k, x in LET if not ca["checks"][k]) or "none"
     inf = "" if ca["lookup_informative"] else "$^{c}$"
-    return (f"{name} & {L1['near_dup_pairs_per_1000_docs']:,.1f} & {f(1000 * L1['label_conflicting_duplicate_groups'] / r['n_documents'], 2)} & "
+    return (f"{name} & {near_dup_docs_per_1000(L1):,.1f} & {f(1000 * L1['label_conflicting_duplicate_groups'] / r['n_documents'], 2)} & "
             f"{f(exc, 2)} & {f(oth, 2)} & {f(L3['normalized_lookup_recovery'], 2)}{inf} & {strict} & {cont} \\\\"), ca["passed"]
 
 
@@ -261,7 +262,40 @@ for k, name in CORP:
 rows.append("\\hline")
 for k, name in (("ttc4900_clean", "TTC-4900, cleaned"), ("urun_yorum_clean", "Product reviews, cleaned")):
     rows.append(prof_row(name, RC[k])[0])
+AG = json.load(open(REP / "agnews.json"))
+EXT = [("dbpedia", "DBpedia", "db"), ("yelp", "Yelp polarity", "yelp"), ("imdb", "IMDB", "imdb")]
+RX = {k: json.load(open(REP / f"{k}.json")) for k, _, _ in EXT}
+rows += ["\\hline", prof_row("AG News$^{d}$", AG)[0]] + [prof_row(f"{nm}$^{{d}}$", RX[k])[0] for k, nm, _ in EXT]
+N["ext.passed"] = ", ".join(nm for k, nm, _ in EXT if content_aware_certificate(RX[k])["passed"])
+for k, nm, key in EXT:
+    r = RX[k]; L1 = r["layer1"]; v = r["layer2"]["views"]
+    N[f"{key}.n"] = thou(r["n_documents"])
+    N[f"{key}.nd"] = f(near_dup_docs_per_1000(L1), 1)
+    N[f"{key}.dupdocs"] = thou(L1["documents_in_duplicate_groups"])
+    N[f"{key}.conf"] = thou(L1["label_conflicting_duplicate_groups"])
+    N[f"{key}.skip"] = thou(L1["lsh_buckets_skipped"])
+    N[f"{key}.exc"] = f(max(d["normalized_recovery"] - v[f"random_window_{kk.split('_')[1]}_tokens"]["normalized_recovery"] for kk, d in v.items() if kk.startswith("first_")), 2)
+    N[f"{key}.fallback"] = pct(r["layer3"]["lookup_fallback_rate"], 0)
 (TAB / "profiles.tex").write_text("\n".join(rows) + "\n")
+X6 = json.load(open(EXP / "exp_r6.json"))
+_v = AG["layer2"]["views"]
+N["ag.n"] = thou(AG["n_documents"])
+N["ag.full"] = f(AG["layer2"]["full_text_macro_f1"])
+N["ag.nd"] = f(near_dup_docs_per_1000(AG["layer1"]), 1)
+N["ag.conf"] = thou(AG["layer1"]["label_conflicting_duplicate_groups"])
+N["ag.first3"] = f(_v["first_3_tokens"]["normalized_recovery"], 2)
+N["ag.win3"] = f(_v["random_window_3_tokens"]["normalized_recovery"], 2)
+N["ag.exc3x"] = f(_v["first_3_tokens"]["normalized_recovery"] - _v["random_window_3_tokens"]["normalized_recovery"], 3)
+N["ag.exc3"] = f(_v["first_3_tokens"]["normalized_recovery"] - _v["random_window_3_tokens"]["normalized_recovery"], 2)
+N["ag.exc10"] = f(_v["first_10_tokens"]["normalized_recovery"] - _v["random_window_10_tokens"]["normalized_recovery"], 2)
+N["ag.fallback"] = pct(AG["layer3"]["lookup_fallback_rate"], 0)
+N["ag.te_in_tr"] = thou(X6["test_in_train"])
+N["ag.te_in_tr_share"] = pct(X6["test_in_train_share"], 2)
+X7 = json.load(open(EXP / "exp_r7.json"))["stable_interval"]
+for c, key in (("uniqueness", "uniq"), ("near_dup_docs_per_1000", "nd"), ("opening_excess", "exc"), ("other_views_R", "oth")):
+    N[f"r7.{key}.lo"] = f(X7[c]["nearest_below_or_at"], 2)
+    N[f"r7.{key}.hi"] = f(X7[c]["nearest_above"], 2)
+N["r7.conf.lo"] = f(X7["conflict_groups_per_1000"]["nearest_below_or_at"], 2)
 for k, key in (("ttc4900_clean", "ttc"), ("urun_yorum_clean", "rev")):
     d = X3[k]
     N[f"r3.{key}.before"], N[f"r3.{key}.after"] = thou(d["n_before"]), thou(d["n_after"])
@@ -274,6 +308,8 @@ N["dc.sen.groups"] = thou(DC["Sentiment (test)"]["TextDuplicates"]["n_duplicate_
 N["dc.ttc.mix"] = pct(DC["TTC-4900"]["TrainTestSamplesMix_random_split"]["ratio"], 1)
 N["dc.ttc.conf"] = thou(round(DC["TTC-4900"]["ConflictingLabels"]["percent_of_conflicting_samples"] * 4900))
 N["ca.th.excess"] = "0.25"
+_nd = [v["permuted_label_macro_f1"] - R[k]["layer2"]["chance_macro_f1"] for k, _ in CORP for v in R[k]["layer2"]["views"].values()]
+N["null.lo"], N["null.hi"] = f(min(_nd), 2), f(max(_nd), 2)
 X5 = json.load(open(EXP / "exp_r5.json"))
 N["r5.n_seeds"] = str(len(X5["runs"]))
 N["r5.f1"] = f(X5["summary"]["random_removed_mean"])
@@ -293,6 +329,60 @@ N["r4.tr_in_rev"] = thou(X4["train_in_reviews"])
 N["r4.tr_in_rev_share"] = pct(X4["train_in_reviews_share"], 1)
 N["r4.urun.n"] = thou(X4["train_per_source"]["urun_yorumlari"]["n"])
 N["r4.urun.in"] = thou(X4["train_per_source"]["urun_yorumlari"]["in_reviews"])
+# R8: position-shuffled negative control and bootstrap interval of the opening excess
+X8 = json.load(open(EXP / "exp_r8.json"))
+C8 = [k for k in X8 if isinstance(X8[k], dict) and "shuffled" in X8[k]]
+N["r8.n"] = str(len(C8))
+N["r8.fa_point"] = str(X8["false_alarms_point"])
+N["r8.fa_lb"] = str(X8["false_alarms_lower_bound"])
+N["r8.sh.max"] = f(max(X8[k]["shuffled"]["excess"] for k in C8), 2)
+N["r8.sh.hi"] = f(max(X8[k]["shuffled"]["ci95"][1] for k in C8), 2)
+for k, key in (("TurkPhish v2", "v2"), ("TTC-4900", "ttc"), ("AG News", "ag"), ("Sentiment (test)", "sen"), ("Product reviews", "rev")):
+    N[f"r8.{key}.exc"] = f(X8[k]["original"]["excess"], 2)
+    N[f"r8.{key}.ci"] = ci(X8[k]["original"]["ci95"], 3)
+    N[f"r8.{key}.lo"] = f(X8[k]["original"]["ci95"][0], 2)
+# R9: recovery anchored on the permuted-label null
+X9 = json.load(open(EXP / "exp_r9.json"))["summary"]
+N["r9.neg0"], N["r9.neg"], N["r9.nviews"] = str(X9["n_negative_R0"]), str(X9["n_negative_R"]), str(X9["n_views"])
+N["r9.changed"] = str(len(X9["verdicts_changed"]))
+# R10: permuted-label nulls as views, 4-gram lookup, refitted opening excess
+X10 = json.load(open(EXP / "exp_r10.json"))
+A10 = X10["A_null"]["summary"]
+N["r10.a.nother"], N["r10.a.nopen"] = str(A10["n_other"]), str(A10["n_opening"])
+N["r10.a.otherfl"], N["r10.a.openfl"] = str(A10["other_flagged"]), str(A10["opening_flagged"])
+N["r10.a.othermax"], N["r10.a.openmax"] = f(A10["other_max"], 3), f(A10["opening_max"], 3)
+for k, key in (("TurkPhish v2", "v2"), ("TTC-4900", "ttc"), ("AG News", "ag"), ("Sentiment (test)", "sen"), ("Product reviews", "rev")):
+    b = X10["B_ngram"][k]
+    N[f"r10.b.{key}.fb"], N[f"r10.b.{key}.RL"] = pct(b["fallback"], 0), f(b["RL"], 2)
+N["r10.nseeds"] = str(X10["refit_seeds"])
+for k, key in (("TurkPhish v2", "v2"), ("TTC-4900", "ttc"), ("AG News", "ag")):
+    c = X10["C_refit"][k]
+    N[f"r10.c.{key}.min"], N[f"r10.c.{key}.max"] = f(c["min"], 3), f(c["max"], 3)
+    N[f"r10.c.{key}.above"] = str(c["n_above"])
+# R11: Cleanlab Datalab in a TF-IDF space
+X11 = json.load(open(EXP / "exp_r11.json"))
+for k, key in (("TTC-4900", "ttc"), ("Product reviews", "rev"), ("Sentiment (test)", "sen")):
+    r = X11[k]
+    N[f"r11.{key}.la"], N[f"r11.{key}.both"] = thou(r["leakaudit_dup_docs"]), thou(r["near_dup_both"])
+    N[f"r11.{key}.extra"], N[f"r11.{key}.lab"] = thou(r["cleanlab_near_dup_not_leakaudit"]), thou(r["cleanlab_label_issue_docs"])
+CK = ("TTC-4900", "Product reviews", "Sentiment (test)")
+B11 = {b: sum(X11[k]["cleanlab_only_max_jaccard_bins"][b] for k in CK) for b in ("ge_0.8", "0.5_0.8", "0.2_0.5", "lt_0.2")}
+N["r11.only.all"] = thou(sum(B11.values()))
+N["r11.only.ge08"], N["r11.only.mid"], N["r11.only.lt02"] = thou(B11["ge_0.8"]), thou(B11["0.5_0.8"]), thou(B11["lt_0.2"])
+N["r11.ttc.mid"] = thou(X11["TTC-4900"]["cleanlab_only_max_jaccard_bins"]["0.5_0.8"])
+N["r11.sen.lt02"] = thou(X11["Sentiment (test)"]["cleanlab_only_max_jaccard_bins"]["lt_0.2"])
+N["r11.sen.cross"] = thou(X11["Sentiment (test)"]["cleanlab_only_with_other_label_partner"])
+N["r11.conf.n"] = str(sum(X11[k]["leakaudit_conflict_docs"] for k in CK))
+N["r11.conf.hit"] = str(sum(X11[k]["conflict_docs_flagged_label_issue"] for k in CK))
+N["r11.la.all"] = thou(sum(X11[k]["leakaudit_dup_docs"] for k in CK))
+N["r11.both.all"] = thou(sum(X11[k]["near_dup_both"] for k in CK))
+# R12: size-matched inflation on IMDB and AG News samples
+for fn, key, nm in (("imdb", "imdb", "IMDB"), ("ag", "ag", "AG News")):
+    d = json.load(open(EXP / f"exp_r12_{fn}.json"))[nm]
+    sh = [r["removed_share"] for r in d["runs"]]
+    N[f"r12.{key}.share"] = pct(sum(sh) / len(sh), 1)
+    N[f"r12.{key}.lr"], N[f"r12.{key}.knn"] = f(d["lr"]["duplication_effect_mean_pts"], 2), f(d["knn1"]["duplication_effect_mean_pts"], 2)
+    N[f"r12.{key}.lr_ci"], N[f"r12.{key}.knn_ci"] = ci(d["lr"]["duplication_effect_ci95_pts"]), ci(d["knn1"]["duplication_effect_ci95_pts"])
 N["ca.passed_raw"] = str(sum(content_aware_certificate(R[k])["passed"] for k, _ in CORP))
 (ROOT / "paper" / "numbers.json").write_text(json.dumps(N, indent=1, ensure_ascii=False))
 

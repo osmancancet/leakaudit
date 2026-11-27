@@ -45,7 +45,7 @@
     "near_dup_pairs_identical": 175,
     "near_dup_pairs_non_identical": 477,
     "near_dup_pairs_cross_label": 26,
-    "near_dup_documents_affected": 3282,
+    "near_dup_documents_affected": 628,
     "near_dup_pairs_per_1000_docs": 13.04,
     "near_dup_max_jaccard": 1.0,
     "lsh_buckets_skipped": 0,
@@ -63,18 +63,20 @@
         "recovery_ratio": 0.7605,
         "normalized_recovery": 0.2725,
         "normalized_recovery_ci95": [
-          0.237,
-          0.3062
-        ]
+          0.2342,
+          0.3086
+        ],
+        "permuted_label_macro_f1": 0.4959
       },
       "first_5_tokens": {
         "macro_f1": 0.6026,
         "recovery_ratio": 0.8086,
         "normalized_recovery": 0.4184,
         "normalized_recovery_ci95": [
-          0.3819,
-          0.4602
-        ]
+          0.3783,
+          0.4593
+        ],
+        "permuted_label_macro_f1": 0.5016
       },
       "first_10_tokens": {
         "macro_f1": 0.6523,
@@ -82,35 +84,59 @@
         "normalized_recovery": 0.6208,
         "normalized_recovery_ci95": [
           0.582,
-          0.6646
-        ]
+          0.6648
+        ],
+        "permuted_label_macro_f1": 0.5015
+      },
+      "random_window_3_tokens": {
+        "macro_f1": 0.562,
+        "recovery_ratio": 0.754,
+        "normalized_recovery": 0.2526,
+        "normalized_recovery_ci95": [
+          0.2159,
+          0.2931
+        ],
+        "permuted_label_macro_f1": 0.4918
+      },
+      "random_window_5_tokens": {
+        "macro_f1": 0.5826,
+        "recovery_ratio": 0.7817,
+        "normalized_recovery": 0.3368,
+        "normalized_recovery_ci95": [
+          0.2995,
+          0.3792
+        ],
+        "permuted_label_macro_f1": 0.5017
       },
       "random_window_10_tokens": {
-        "macro_f1": 0.6412,
-        "recovery_ratio": 0.8603,
-        "normalized_recovery": 0.5755,
+        "macro_f1": 0.6389,
+        "recovery_ratio": 0.8572,
+        "normalized_recovery": 0.5661,
         "normalized_recovery_ci95": [
-          0.535,
-          0.6167
-        ]
+          0.5241,
+          0.609
+        ],
+        "permuted_label_macro_f1": 0.504
       },
       "punctuation_emoji_case_profile": {
         "macro_f1": 0.1578,
         "recovery_ratio": 0.2118,
         "normalized_recovery": -1.395,
         "normalized_recovery_ci95": [
-          -1.468,
-          -1.3225
-        ]
+          -1.4707,
+          -1.3286
+        ],
+        "permuted_label_macro_f1": 0.4981
       },
       "length_only": {
         "macro_f1": 0.4119,
         "recovery_ratio": 0.5526,
         "normalized_recovery": -0.3593,
         "normalized_recovery_ci95": [
-          -0.3926,
-          -0.3282
-        ]
+          -0.3898,
+          -0.3329
+        ],
+        "permuted_label_macro_f1": 0.3871
       }
     },
     "length_ks_D": 0.0226,
@@ -140,12 +166,12 @@
     "trained_reference_accuracy": 0.931,
     "margin": 0.2599,
     "margin_ci95": [
-      0.2314,
-      0.2848
+      0.2347,
+      0.2859
     ],
     "normalized_lookup_recovery": -0.0673,
     "normalized_lookup_recovery_ci95": [
-      -0.0768,
+      -0.0766,
       -0.0588
     ]
   },
@@ -176,11 +202,11 @@
       "L2_surface_views": true,
       "L3_lookup": true
     },
-    "worst_view": "first_10_tokens",
+    "worst_view": "first_5_tokens",
     "lookup_informative": false,
     "thresholds": {
       "min_template_uniqueness": 0.95,
-      "max_near_dup_pairs_per_1000": 1.0,
+      "max_near_dup_docs_per_1000": 1.0,
       "max_label_conflicts_per_1000": 1.0,
       "max_opening_excess": 0.25,
       "max_normalized_recovery": 0.5,
@@ -189,8 +215,8 @@
     }
   },
   "seconds": {
-    "layer1": 23.0,
-    "layer2": 123.8,
-    "layer3": 11.9
+    "layer1": 22.5,
+    "layer2": 429.6,
+    "layer3": 17.0
   }
 }

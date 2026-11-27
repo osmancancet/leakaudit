@@ -65,7 +65,8 @@
         "normalized_recovery_ci95": [
           0.0187,
           0.0982
-        ]
+        ],
+        "permuted_label_macro_f1": 0.4802
       },
       "first_5_tokens": {
         "macro_f1": 0.8573,
@@ -74,7 +75,8 @@
         "normalized_recovery_ci95": [
           0.6885,
           0.7421
-        ]
+        ],
+        "permuted_label_macro_f1": 0.5024
       },
       "first_10_tokens": {
         "macro_f1": 0.9985,
@@ -83,16 +85,38 @@
         "normalized_recovery_ci95": [
           0.9962,
           1.0023
-        ]
+        ],
+        "permuted_label_macro_f1": 0.5001
+      },
+      "random_window_3_tokens": {
+        "macro_f1": 0.6056,
+        "recovery_ratio": 0.6063,
+        "normalized_recovery": 0.2117,
+        "normalized_recovery_ci95": [
+          0.1722,
+          0.2492
+        ],
+        "permuted_label_macro_f1": 0.5061
+      },
+      "random_window_5_tokens": {
+        "macro_f1": 0.6433,
+        "recovery_ratio": 0.6441,
+        "normalized_recovery": 0.2873,
+        "normalized_recovery_ci95": [
+          0.2518,
+          0.3225
+        ],
+        "permuted_label_macro_f1": 0.5061
       },
       "random_window_10_tokens": {
-        "macro_f1": 0.7109,
-        "recovery_ratio": 0.7117,
-        "normalized_recovery": 0.4227,
+        "macro_f1": 0.732,
+        "recovery_ratio": 0.7328,
+        "normalized_recovery": 0.465,
         "normalized_recovery_ci95": [
-          0.3891,
-          0.4582
-        ]
+          0.4302,
+          0.4972
+        ],
+        "permuted_label_macro_f1": 0.5067
       },
       "punctuation_emoji_case_profile": {
         "macro_f1": 0.4978,
@@ -101,7 +125,8 @@
         "normalized_recovery_ci95": [
           -0.0444,
           0.0288
-        ]
+        ],
+        "permuted_label_macro_f1": 0.5031
       },
       "length_only": {
         "macro_f1": 0.4881,
@@ -110,7 +135,8 @@
         "normalized_recovery_ci95": [
           -0.0668,
           0.0109
-        ]
+        ],
+        "permuted_label_macro_f1": 0.4798
       }
     },
     "length_ks_D": 0.0153,
@@ -177,7 +203,7 @@
     "lookup_informative": true,
     "thresholds": {
       "min_template_uniqueness": 0.95,
-      "max_near_dup_pairs_per_1000": 1.0,
+      "max_near_dup_docs_per_1000": 1.0,
       "max_label_conflicts_per_1000": 1.0,
       "max_opening_excess": 0.25,
       "max_normalized_recovery": 0.5,
@@ -186,8 +212,8 @@
     }
   },
   "seconds": {
-    "layer1": 8.1,
-    "layer2": 41.3,
-    "layer3": 4.0
+    "layer1": 8.8,
+    "layer2": 49.0,
+    "layer3": 4.6
   }
 }

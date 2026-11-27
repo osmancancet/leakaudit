@@ -109,19 +109,19 @@
   "runtime_layer1_product_reviews": [
     {
       "n": 25000,
-      "seconds": 6.4
+      "seconds": 7.3
     },
     {
       "n": 50000,
-      "seconds": 15.3
+      "seconds": 16.2
     },
     {
       "n": 100000,
-      "seconds": 37.4
+      "seconds": 40.5
     },
     {
       "n": 235144,
-      "seconds": 122.4
+      "seconds": 127.3
     }
   ]
 }

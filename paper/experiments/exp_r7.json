@@ -1,0 +1,115 @@
+{
+  "corpora": {
+    "agnews": {
+      "uniqueness": 0.9983,
+      "near_dup_docs_per_1000": 33.98,
+      "conflict_groups_per_1000": 0.1833,
+      "opening_excess": 0.2604,
+      "other_views_R": 0.0671
+    },
+    "dbpedia": {
+      "uniqueness": 0.9995,
+      "near_dup_docs_per_1000": 24.1,
+      "conflict_groups_per_1000": 0.0,
+      "opening_excess": 0.088,
+      "other_views_R": 0.0193
+    },
+    "duygu": {
+      "uniqueness": 0.9991,
+      "near_dup_docs_per_1000": 4.2684,
+      "conflict_groups_per_1000": 0.1634,
+      "opening_excess": 0.0874,
+      "other_views_R": 0.8817
+    },
+    "imdb": {
+      "uniqueness": 0.9962,
+      "near_dup_docs_per_1000": 9.36,
+      "conflict_groups_per_1000": 0.0,
+      "opening_excess": 0.132,
+      "other_views_R": 0.006
+    },
+    "ttc4900": {
+      "uniqueness": 0.9251,
+      "near_dup_docs_per_1000": 224.4898,
+      "conflict_groups_per_1000": 0.2041,
+      "opening_excess": 0.3168,
+      "other_views_R": 0.0638
+    },
+    "turkphish_v1": {
+      "uniqueness": 0.0079,
+      "near_dup_docs_per_1000": 999.467,
+      "conflict_groups_per_1000": 0.0,
+      "opening_excess": 0.0008,
+      "other_views_R": 0.9996,
+      "lookup_R": 1.0
+    },
+    "turkphish_v2": {
+      "uniqueness": 1.0,
+      "near_dup_docs_per_1000": 0.0,
+      "conflict_groups_per_1000": 0.0,
+      "opening_excess": 0.5342,
+      "other_views_R": -0.0045,
+      "lookup_R": 0.8017
+    },
+    "urun_yorum": {
+      "uniqueness": 0.992,
+      "near_dup_docs_per_1000": 12.56,
+      "conflict_groups_per_1000": 0.3275,
+      "opening_excess": 0.0816,
+      "other_views_R": -0.3593
+    },
+    "yelp": {
+      "uniqueness": 0.9999,
+      "near_dup_docs_per_1000": 0.28,
+      "conflict_groups_per_1000": 0.0054,
+      "opening_excess": 0.1129,
+      "other_views_R": 0.162
+    },
+    "ttc4900_clean": {
+      "uniqueness": 1.0,
+      "near_dup_docs_per_1000": 0.0,
+      "conflict_groups_per_1000": 0.0,
+      "opening_excess": 0.3255,
+      "other_views_R": 0.0597
+    },
+    "urun_yorum_clean": {
+      "uniqueness": 1.0,
+      "near_dup_docs_per_1000": 0.0,
+      "conflict_groups_per_1000": 0.0,
+      "opening_excess": 0.1028,
+      "other_views_R": -0.4488
+    }
+  },
+  "stable_interval": {
+    "uniqueness": {
+      "threshold": 0.95,
+      "nearest_below_or_at": 0.9251,
+      "nearest_above": 0.992
+    },
+    "near_dup_docs_per_1000": {
+      "threshold": 1.0,
+      "nearest_below_or_at": 0.28,
+      "nearest_above": 4.2684
+    },
+    "conflict_groups_per_1000": {
+      "threshold": 1.0,
+      "nearest_below_or_at": 0.3275,
+      "nearest_above": null
+    },
+    "opening_excess": {
+      "threshold": 0.25,
+      "nearest_below_or_at": 0.132,
+      "nearest_above": 0.2604
+    },
+    "other_views_R": {
+      "threshold": 0.5,
+      "nearest_below_or_at": 0.162,
+      "nearest_above": 0.8817
+    },
+    "lookup_R": {
+      "threshold": 0.5,
+      "nearest_below_or_at": null,
+      "nearest_above": 0.8017
+    }
+  }
+}

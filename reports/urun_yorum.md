@@ -31,12 +31,14 @@ Full-text macro-F1 (5-fold CV, grouped folds): 0.7453 (random folds: 0.7408); ch
 
 | View | Macro-F1 | Recovery ratio | Normalized recovery | 95% CI |
 |---|---:|---:|---:|---|
-| first_3_tokens | 0.5668 | 0.760 | 0.273 | 0.237 to 0.306 |
-| first_5_tokens | 0.6026 | 0.809 | 0.418 | 0.382 to 0.460 |
+| first_3_tokens | 0.5668 | 0.760 | 0.273 | 0.234 to 0.309 |
+| first_5_tokens | 0.6026 | 0.809 | 0.418 | 0.378 to 0.459 |
 | first_10_tokens | 0.6523 | 0.875 | 0.621 | 0.582 to 0.665 |
-| random_window_10_tokens | 0.6412 | 0.860 | 0.576 | 0.535 to 0.617 |
-| punctuation_emoji_case_profile | 0.1578 | 0.212 | -1.395 | -1.468 to -1.323 |
-| length_only | 0.4119 | 0.553 | -0.359 | -0.393 to -0.328 |
+| random_window_3_tokens | 0.5620 | 0.754 | 0.253 | 0.216 to 0.293 |
+| random_window_5_tokens | 0.5826 | 0.782 | 0.337 | 0.299 to 0.379 |
+| random_window_10_tokens | 0.6389 | 0.857 | 0.566 | 0.524 to 0.609 |
+| punctuation_emoji_case_profile | 0.1578 | 0.212 | -1.395 | -1.471 to -1.329 |
+| length_only | 0.4119 | 0.553 | -0.359 | -0.390 to -0.333 |
 
 Max normalized recovery: 0.621 (first_10_tokens); threshold <= 0.5: FAIL.
 Length distribution by class: KS D = 0.0226, p = 0.5778.

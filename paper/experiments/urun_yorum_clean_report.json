@@ -65,7 +65,8 @@
     "normalized_recovery_ci95": [
      0.2196,
      0.2887
-    ]
+    ],
+    "permuted_label_macro_f1": 0.4802
    },
    "first_5_tokens": {
     "macro_f1": 0.6029,
@@ -74,7 +75,8 @@
     "normalized_recovery_ci95": [
      0.3845,
      0.4659
-    ]
+    ],
+    "permuted_label_macro_f1": 0.4965
    },
    "first_10_tokens": {
     "macro_f1": 0.6578,
@@ -83,16 +85,38 @@
     "normalized_recovery_ci95": [
      0.6044,
      0.6839
-    ]
+    ],
+    "permuted_label_macro_f1": 0.4931
+   },
+   "random_window_3_tokens": {
+    "macro_f1": 0.5703,
+    "recovery_ratio": 0.7662,
+    "normalized_recovery": 0.2877,
+    "normalized_recovery_ci95": [
+     0.2479,
+     0.3243
+    ],
+    "permuted_label_macro_f1": 0.4968
+   },
+   "random_window_5_tokens": {
+    "macro_f1": 0.592,
+    "recovery_ratio": 0.7954,
+    "normalized_recovery": 0.3767,
+    "normalized_recovery_ci95": [
+     0.3377,
+     0.4185
+    ],
+    "permuted_label_macro_f1": 0.4992
    },
    "random_window_10_tokens": {
-    "macro_f1": 0.6432,
-    "recovery_ratio": 0.8642,
-    "normalized_recovery": 0.5862,
+    "macro_f1": 0.6327,
+    "recovery_ratio": 0.8501,
+    "normalized_recovery": 0.5433,
     "normalized_recovery_ci95": [
-     0.5445,
-     0.6238
-    ]
+     0.5034,
+     0.5823
+    ],
+    "permuted_label_macro_f1": 0.4989
    },
    "punctuation_emoji_case_profile": {
     "macro_f1": 0.1604,
@@ -101,7 +125,8 @@
     "normalized_recovery_ci95": [
      -1.4663,
      -1.3232
-    ]
+    ],
+    "permuted_label_macro_f1": 0.4989
    },
    "length_only": {
     "macro_f1": 0.3904,
@@ -110,7 +135,8 @@
     "normalized_recovery_ci95": [
      -0.4873,
      -0.4149
-    ]
+    ],
+    "permuted_label_macro_f1": 0.4165
    }
   },
   "length_ks_D": 0.0295,
@@ -178,7 +204,7 @@
   "lookup_informative": false,
   "thresholds": {
    "min_template_uniqueness": 0.95,
-   "max_near_dup_pairs_per_1000": 1.0,
+   "max_near_dup_docs_per_1000": 1.0,
    "max_label_conflicts_per_1000": 1.0,
    "max_opening_excess": 0.25,
    "max_normalized_recovery": 0.5,
@@ -187,8 +213,8 @@
   }
  },
  "seconds": {
-  "layer1": 22.1,
-  "layer2": 174.8,
-  "layer3": 11.7
+  "layer1": 22.9,
+  "layer2": 200.1,
+  "layer3": 13.8
  }
 }
