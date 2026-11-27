@@ -1,0 +1,64 @@
+{
+  "leakaudit_version": "0.2.0",
+  "ttc4900_clean": {
+    "n_before": 4900,
+    "n_after": 4294,
+    "removed_in_conflict_groups": 14,
+    "strict": {
+      "L1_template_uniqueness": true,
+      "L1_near_duplicates": true,
+      "L1_label_conflicts": true,
+      "L2_surface_views": false,
+      "L3_lookup": true
+    },
+    "strict_passed": false,
+    "content_aware": {
+      "L1_template_uniqueness": true,
+      "L1_near_duplicates": true,
+      "L1_label_conflicts": true,
+      "L2_surface_views": false,
+      "L3_lookup": true
+    },
+    "content_aware_passed": false,
+    "uniqueness": 1.0,
+    "near_dup_pairs": 0,
+    "conflicts": 0,
+    "full_f1": 0.9069,
+    "first10_R": 0.7757,
+    "random_window_R": 0.4468,
+    "warnings": [
+      "the sentence lookup fell back to the majority class for 100% of test documents; check L3 is not informative here"
+    ]
+  },
+  "urun_yorum_clean": {
+    "n_before": 235144,
+    "n_after": 230964,
+    "removed_in_conflict_groups": 502,
+    "strict": {
+      "L1_template_uniqueness": true,
+      "L1_near_duplicates": true,
+      "L1_label_conflicts": true,
+      "L2_surface_views": false,
+      "L3_lookup": true
+    },
+    "strict_passed": false,
+    "content_aware": {
+      "L1_template_uniqueness": true,
+      "L1_near_duplicates": true,
+      "L1_label_conflicts": true,
+      "L2_surface_views": true,
+      "L3_lookup": true
+    },
+    "content_aware_passed": true,
+    "uniqueness": 1.0,
+    "near_dup_pairs": 0,
+    "conflicts": 0,
+    "full_f1": 0.7443,
+    "first10_R": 0.6461,
+    "random_window_R": 0.5862,
+    "warnings": [
+      "the sentence lookup fell back to the majority class for 98% of test documents; check L3 is not informative here"
+    ]
+  },
+  "seconds": 789.1
+}

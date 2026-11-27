@@ -1,6 +1,6 @@
 """Additional experiments for the LeakAudit journal article.
 
-E1  split inflation: random stratified split vs. duplicate-aware grouped split
+E1  split inflation, single seed (superseded by E5 in exp_r1.py; kept for the record)
 E2  near-duplicate threshold sensitivity (Jaccard 0.7 / 0.8 / 0.9)
 E3  masking ablation: template uniqueness before and after entity masking
 E4  layer-1 runtime scaling on the product-review corpus
@@ -111,13 +111,14 @@ def split_inflation(texts, y, max_n=50000):
     return out
 
 
-def threshold_sweep(texts, cap=50000):
-    rng = np.random.RandomState(SEED)
-    idx = rng.permutation(len(texts))[:min(cap, len(texts))]
-    sh = [T.shingles(texts[i]) for i in idx]
-    pairs, best = near_duplicate_pairs(sh, threshold=0.7)
-    out = {f"pairs_j{t}": int(sum(j >= t for _, _, j in pairs)) for t in (0.7, 0.8, 0.9)}
-    out["sample"] = int(len(idx))
+def threshold_sweep(texts, y, cap=50000):
+    """Near-duplicate pair counts at three Jaccard thresholds, counted exactly as layer 1 does."""
+    out = {}
+    for t in (0.7, 0.8, 0.9):
+        r = layer1(texts, y, near_dup_cap=cap, jaccard_threshold=t, seed=SEED)
+        out[f"pairs_j{t}"] = r["near_dup_pairs"]
+        out[f"non_identical_j{t}"] = r["near_dup_pairs_non_identical"]
+        out["sample"] = r["near_dup_sample_size"]
     return out
 
 
@@ -147,7 +148,7 @@ def main():
         print(f"[{name}] n={len(texts)}", flush=True)
         r = {"masking": masking_ablation(texts)}
         if name != "TurkPhish v2":
-            r["threshold_sweep"] = threshold_sweep(texts)
+            r["threshold_sweep"] = threshold_sweep(texts, y)
             r["split_inflation"] = split_inflation(texts, y)
         results[name] = r
         print(json.dumps(r), flush=True)

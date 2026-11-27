@@ -35,13 +35,17 @@ def main(argv=None) -> int:
     ap.add_argument("--metadata", nargs="*", default=[], help="metadata columns to test as predictors")
     ap.add_argument("--split", help="column with train/test assignment for layer 3")
     ap.add_argument("--name", help="corpus name for the report")
+    ap.add_argument("--lang", choices=["tr", "generic"], default="tr",
+                    help="lower-casing rule (Turkish dotted/dotless i, or Unicode default)")
     ap.add_argument("--seed", type=int, default=42)
     ap.add_argument("--sample-cap", type=int, default=20000)
     ap.add_argument("--near-dup-cap", type=int, default=50000)
     ap.add_argument("--min-template-uniqueness", type=float, default=0.95)
     ap.add_argument("--max-near-dup-pairs", type=int, default=0)
     ap.add_argument("--max-normalized-recovery", type=float, default=0.50)
-    ap.add_argument("--min-lookup-margin", type=float, default=0.10)
+    ap.add_argument("--max-lookup-recovery", type=float, default=0.50)
+    ap.add_argument("--random-splits", action="store_true",
+                    help="use plain stratified folds instead of duplicate-aware grouped folds")
     ap.add_argument("--out", default="leakaudit_report.json", help="JSON report path")
     ap.add_argument("--md", help="optional Markdown summary path")
     a = ap.parse_args(argv)
@@ -53,8 +57,9 @@ def main(argv=None) -> int:
         df["__text__"] = df[cols].fillna("").astype(str).agg("\n".join, axis=1).str.strip()
         text_col = "__text__"
     cfg = AuditConfig(seed=a.seed, sample_cap=a.sample_cap, near_dup_cap=a.near_dup_cap,
+                      grouped_splits=not a.random_splits, language=a.lang,
                       thresholds=Thresholds(a.min_template_uniqueness, a.max_near_dup_pairs, 0,
-                                            a.max_normalized_recovery, a.min_lookup_margin))
+                                            a.max_normalized_recovery, a.max_lookup_recovery))
     rep = audit(df, text_col, a.label, a.metadata, a.split, cfg, a.name or Path(a.data).stem)
     rep["text_column"] = a.text
     Path(a.out).write_text(json.dumps(rep, indent=2, ensure_ascii=False, default=float))

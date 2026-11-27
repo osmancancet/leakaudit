@@ -9,6 +9,7 @@ one template with different links or amounts).
 from __future__ import annotations
 
 import re
+import unicodedata
 from typing import Iterable, List, Set
 
 URL_RE = re.compile(r"https?://\S+|www\.\S+", re.IGNORECASE)
@@ -21,11 +22,31 @@ PUNCT_RE = re.compile(r"[^\w\s]|_", re.UNICODE)
 EMOJI_RE = re.compile("[\U0001F300-\U0001FAFF☀-➿]")
 
 _TR_UPPER = str.maketrans({"I": "ı", "İ": "i"})
+_LANG = {"value": "tr"}
+LANGUAGES = ("tr", "generic")
+
+
+def set_language(lang: str) -> None:
+    """Select the lower-casing rule: 'tr' (Turkish dotted/dotless i, default) or
+    'generic' (Unicode default lower-casing). Everything else is language-independent."""
+    if lang not in LANGUAGES:
+        raise ValueError(f"language must be one of {LANGUAGES}")
+    _LANG["value"] = lang
 
 
 def tr_lower(text: str) -> str:
-    """Turkish-aware lower-casing."""
-    return str(text).translate(_TR_UPPER).lower()
+    """Unicode NFKC normalisation followed by lower-casing.
+
+    With the default language 'tr', lower-casing is Turkish-aware (I -> ı,
+    İ -> i); with 'generic' it is the Unicode default. NFKC makes composed and
+    decomposed forms of the same letter identical; the combining dot above left
+    by a decomposed or pre-lowered dotted capital I is removed so that it folds
+    to plain i.
+    """
+    s = unicodedata.normalize("NFKC", str(text))
+    if _LANG["value"] == "tr":
+        s = s.translate(_TR_UPPER)
+    return s.lower().replace("i\u0307", "i")
 
 
 def mask(text: str) -> str:

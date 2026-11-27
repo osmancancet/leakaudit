@@ -1,6 +1,6 @@
 {
   "tool": "leakaudit",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "corpus": "TurkPhish v2",
   "text_column": "konu+icerik",
   "label_column": "kategori",
@@ -18,12 +18,14 @@
     "near_dup_cap": 50000,
     "jaccard_threshold": 0.8,
     "folds": 5,
+    "grouped_splits": true,
+    "language": "tr",
     "thresholds": {
       "min_template_uniqueness": 0.95,
       "max_near_dup_pairs": 0,
       "max_label_conflicting_groups": 0,
       "max_normalized_recovery": 0.5,
-      "min_lookup_margin": 0.1
+      "max_lookup_recovery": 0.5
     }
   },
   "layer1": {
@@ -40,63 +42,112 @@
     "near_dup_sample_size": 2653,
     "near_dup_jaccard_threshold": 0.8,
     "near_dup_pairs": 0,
+    "near_dup_pairs_identical": 0,
     "near_dup_pairs_non_identical": 0,
     "near_dup_pairs_cross_label": 0,
-    "near_dup_max_jaccard": 0.5715
+    "near_dup_documents_affected": 0,
+    "near_dup_pairs_per_1000_docs": 0.0,
+    "near_dup_max_jaccard": 0.5715,
+    "lsh_buckets_skipped": 0,
+    "split_groups": 2653
   },
   "layer2": {
-    "full_text_macro_f1": 0.9985,
+    "folds": "grouped",
+    "fold_seed": 42,
+    "full_text_macro_f1": 0.9989,
+    "full_text_macro_f1_random_folds": 0.9985,
     "chance_macro_f1": 0.5,
     "views": {
       "first_3_tokens": {
         "macro_f1": 0.5281,
-        "recovery_ratio": 0.5289,
-        "normalized_recovery": 0.0563
+        "recovery_ratio": 0.5287,
+        "normalized_recovery": 0.0563,
+        "normalized_recovery_ci95": [
+          0.0187,
+          0.0982
+        ]
       },
       "first_5_tokens": {
-        "macro_f1": 0.8608,
-        "recovery_ratio": 0.8621,
-        "normalized_recovery": 0.7238
+        "macro_f1": 0.8573,
+        "recovery_ratio": 0.8582,
+        "normalized_recovery": 0.7162,
+        "normalized_recovery_ci95": [
+          0.6885,
+          0.7421
+        ]
       },
       "first_10_tokens": {
-        "macro_f1": 0.9989,
-        "recovery_ratio": 1.0004,
-        "normalized_recovery": 1.0008
+        "macro_f1": 0.9985,
+        "recovery_ratio": 0.9996,
+        "normalized_recovery": 0.9992,
+        "normalized_recovery_ci95": [
+          0.9962,
+          1.0023
+        ]
+      },
+      "random_window_10_tokens": {
+        "macro_f1": 0.7109,
+        "recovery_ratio": 0.7117,
+        "normalized_recovery": 0.4227,
+        "normalized_recovery_ci95": [
+          0.3891,
+          0.4582
+        ]
       },
       "punctuation_emoji_case_profile": {
-        "macro_f1": 0.4764,
-        "recovery_ratio": 0.4771,
-        "normalized_recovery": 0.0
+        "macro_f1": 0.4978,
+        "recovery_ratio": 0.4983,
+        "normalized_recovery": -0.0045,
+        "normalized_recovery_ci95": [
+          -0.0444,
+          0.0288
+        ]
       },
       "length_only": {
-        "macro_f1": 0.4963,
-        "recovery_ratio": 0.4971,
-        "normalized_recovery": 0.0
+        "macro_f1": 0.4881,
+        "recovery_ratio": 0.4887,
+        "normalized_recovery": -0.0238,
+        "normalized_recovery_ci95": [
+          -0.0668,
+          0.0109
+        ]
       }
     },
     "length_ks_D": 0.0153,
     "length_ks_p": 0.9968,
-    "max_normalized_recovery": 1.0008,
+    "max_normalized_recovery": 0.9992,
     "max_view": "first_10_tokens"
   },
   "layer3": {
+    "split": "grouped",
     "test_size": 531,
     "sentence_inventory": {
       "0": {
-        "sentence_types": 1734,
-        "exclusive_types": 1535,
-        "top40_exclusive_coverage": 0.825
+        "sentence_types": 1736,
+        "exclusive_types": 1542,
+        "top40_exclusive_coverage": 0.7683
       },
       "1": {
-        "sentence_types": 1867,
-        "exclusive_types": 1668,
-        "top40_exclusive_coverage": 1.0
+        "sentence_types": 1904,
+        "exclusive_types": 1710,
+        "top40_exclusive_coverage": 0.8676
       }
     },
-    "lookup_rule_macro_f1": 0.8913,
-    "trained_reference_macro_f1": 0.9981,
-    "trained_reference_accuracy": 0.9981,
-    "margin": 0.1068
+    "lookup_rule_macro_f1": 0.9008,
+    "lookup_fallback_rate": 0.0998,
+    "majority_constant_macro_f1": 0.3387,
+    "trained_reference_macro_f1": 1.0,
+    "trained_reference_accuracy": 1.0,
+    "margin": 0.0992,
+    "margin_ci95": [
+      0.0736,
+      0.1249
+    ],
+    "normalized_lookup_recovery": 0.8017,
+    "normalized_lookup_recovery_ci95": [
+      0.7501,
+      0.8528
+    ]
   },
   "certificate": {
     "passed": false,
@@ -105,15 +156,38 @@
       "L1_near_duplicates": true,
       "L1_label_conflicts": true,
       "L2_surface_views": false,
-      "L3_lookup_margin": true
+      "L3_lookup": false
     },
     "reasons": [
-      "view 'first_10_tokens' recovers 100% of above-chance full-text performance"
-    ]
+      "view 'first_10_tokens' recovers 100% of above-chance full-text performance",
+      "learning-free sentence lookup reaches 0.9008 macro-F1 and recovers 80% of the trained model's above-chance performance"
+    ],
+    "warnings": []
+  },
+  "certificate_content_aware": {
+    "passed": false,
+    "checks": {
+      "L1_template_uniqueness": true,
+      "L1_near_duplicates": true,
+      "L1_label_conflicts": true,
+      "L2_surface_views": false,
+      "L3_lookup": false
+    },
+    "worst_view": "first_10_tokens",
+    "lookup_informative": true,
+    "thresholds": {
+      "min_template_uniqueness": 0.95,
+      "max_near_dup_pairs_per_1000": 1.0,
+      "max_label_conflicts_per_1000": 1.0,
+      "max_opening_excess": 0.25,
+      "max_normalized_recovery": 0.5,
+      "max_lookup_recovery": 0.5,
+      "max_lookup_fallback": 0.9
+    }
   },
   "seconds": {
-    "layer1": 4.0,
-    "layer2": 9.8,
-    "layer3": 1.9
+    "layer1": 8.1,
+    "layer2": 41.3,
+    "layer3": 4.0
   }
 }

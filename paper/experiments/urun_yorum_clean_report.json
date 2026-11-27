@@ -1,0 +1,194 @@
+{
+ "tool": "leakaudit",
+ "version": "0.2.0",
+ "corpus": "Product reviews (cleaned)",
+ "text_column": "text",
+ "label_column": "label",
+ "metadata_columns": [],
+ "split_column": null,
+ "classes": {
+  "0": 14689,
+  "1": 216275
+ },
+ "n_documents": 230964,
+ "n_audited_layers_2_3": 20000,
+ "config": {
+  "seed": 42,
+  "sample_cap": 20000,
+  "near_dup_cap": 50000,
+  "jaccard_threshold": 0.8,
+  "folds": 5,
+  "grouped_splits": true,
+  "language": "tr",
+  "thresholds": {
+   "min_template_uniqueness": 0.95,
+   "max_near_dup_pairs": 0,
+   "max_label_conflicting_groups": 0,
+   "max_normalized_recovery": 0.5,
+   "max_lookup_recovery": 0.5
+  }
+ },
+ "layer1": {
+  "n_documents": 230964,
+  "template_uniqueness": 1.0,
+  "template_uniqueness_per_class": {
+   "0": 1.0,
+   "1": 1.0
+  },
+  "distinct_masked_templates": 230964,
+  "duplicate_groups": 0,
+  "documents_in_duplicate_groups": 0,
+  "label_conflicting_duplicate_groups": 0,
+  "near_dup_sample_size": 50000,
+  "near_dup_jaccard_threshold": 0.8,
+  "near_dup_pairs": 0,
+  "near_dup_pairs_identical": 0,
+  "near_dup_pairs_non_identical": 0,
+  "near_dup_pairs_cross_label": 0,
+  "near_dup_documents_affected": 0,
+  "near_dup_pairs_per_1000_docs": 0.0,
+  "near_dup_max_jaccard": 0.7941,
+  "lsh_buckets_skipped": 0,
+  "split_groups": 230964
+ },
+ "layer2": {
+  "folds": "grouped",
+  "fold_seed": 42,
+  "full_text_macro_f1": 0.7443,
+  "full_text_macro_f1_random_folds": 0.7375,
+  "chance_macro_f1": 0.5,
+  "views": {
+   "first_3_tokens": {
+    "macro_f1": 0.5619,
+    "recovery_ratio": 0.7549,
+    "normalized_recovery": 0.2534,
+    "normalized_recovery_ci95": [
+     0.2196,
+     0.2887
+    ]
+   },
+   "first_5_tokens": {
+    "macro_f1": 0.6029,
+    "recovery_ratio": 0.81,
+    "normalized_recovery": 0.4212,
+    "normalized_recovery_ci95": [
+     0.3845,
+     0.4659
+    ]
+   },
+   "first_10_tokens": {
+    "macro_f1": 0.6578,
+    "recovery_ratio": 0.8838,
+    "normalized_recovery": 0.6461,
+    "normalized_recovery_ci95": [
+     0.6044,
+     0.6839
+    ]
+   },
+   "random_window_10_tokens": {
+    "macro_f1": 0.6432,
+    "recovery_ratio": 0.8642,
+    "normalized_recovery": 0.5862,
+    "normalized_recovery_ci95": [
+     0.5445,
+     0.6238
+    ]
+   },
+   "punctuation_emoji_case_profile": {
+    "macro_f1": 0.1604,
+    "recovery_ratio": 0.2155,
+    "normalized_recovery": -1.3899,
+    "normalized_recovery_ci95": [
+     -1.4663,
+     -1.3232
+    ]
+   },
+   "length_only": {
+    "macro_f1": 0.3904,
+    "recovery_ratio": 0.5244,
+    "normalized_recovery": -0.4488,
+    "normalized_recovery_ci95": [
+     -0.4873,
+     -0.4149
+    ]
+   }
+  },
+  "length_ks_D": 0.0295,
+  "length_ks_p": 0.2338,
+  "max_normalized_recovery": 0.6461,
+  "max_view": "first_10_tokens"
+ },
+ "layer3": {
+  "split": "grouped",
+  "test_size": 4000,
+  "sentence_inventory": {
+   "0": {
+    "sentence_types": 1953,
+    "exclusive_types": 1946,
+    "top40_exclusive_coverage": 0.0
+   },
+   "1": {
+    "sentence_types": 28028,
+    "exclusive_types": 28021,
+    "top40_exclusive_coverage": 0.0048
+   }
+  },
+  "lookup_rule_macro_f1": 0.4829,
+  "lookup_fallback_rate": 0.98,
+  "majority_constant_macro_f1": 0.4831,
+  "trained_reference_macro_f1": 0.73,
+  "trained_reference_accuracy": 0.9217,
+  "margin": 0.247,
+  "margin_ci95": [
+   0.2189,
+   0.2724
+  ],
+  "normalized_lookup_recovery": -0.0742,
+  "normalized_lookup_recovery_ci95": [
+   -0.0832,
+   -0.0653
+  ]
+ },
+ "certificate": {
+  "passed": false,
+  "checks": {
+   "L1_template_uniqueness": true,
+   "L1_near_duplicates": true,
+   "L1_label_conflicts": true,
+   "L2_surface_views": false,
+   "L3_lookup": true
+  },
+  "reasons": [
+   "view 'first_10_tokens' recovers 65% of above-chance full-text performance"
+  ],
+  "warnings": [
+   "the sentence lookup fell back to the majority class for 98% of test documents; check L3 is not informative here"
+  ]
+ },
+ "certificate_content_aware": {
+  "passed": true,
+  "checks": {
+   "L1_template_uniqueness": true,
+   "L1_near_duplicates": true,
+   "L1_label_conflicts": true,
+   "L2_surface_views": true,
+   "L3_lookup": true
+  },
+  "worst_view": "first_10_tokens",
+  "lookup_informative": false,
+  "thresholds": {
+   "min_template_uniqueness": 0.95,
+   "max_near_dup_pairs_per_1000": 1.0,
+   "max_label_conflicts_per_1000": 1.0,
+   "max_opening_excess": 0.25,
+   "max_normalized_recovery": 0.5,
+   "max_lookup_recovery": 0.5,
+   "max_lookup_fallback": 0.9
+  }
+ },
+ "seconds": {
+  "layer1": 22.1,
+  "layer2": 174.8,
+  "layer3": 11.7
+ }
+}

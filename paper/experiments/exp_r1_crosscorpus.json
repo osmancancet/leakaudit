@@ -1,0 +1,59 @@
+{
+  "n_sentiment_test": 48965,
+  "n_reviews": 235144,
+  "n_review_rows_incl_empty": 235165,
+  "overlap_total": 23563,
+  "overlap_label_agreement": 0.9999,
+  "overlap_with_polarity": 23559,
+  "overlap_label_agreement_strict": 0.9986,
+  "per_source": {
+    "HUMIR": {
+      "n": 6425,
+      "in_reviews": 15
+    },
+    "magaza_yorumlari": {
+      "n": 862,
+      "in_reviews": 53
+    },
+    "random": {
+      "n": 43,
+      "in_reviews": 4
+    },
+    "tweet-pn": {
+      "n": 1096,
+      "in_reviews": 1
+    },
+    "urun_yorumlari": {
+      "n": 23490,
+      "in_reviews": 23490
+    },
+    "wiki": {
+      "n": 17049,
+      "in_reviews": 0
+    }
+  },
+  "label_by_source": {
+    "HUMIR": {
+      "Negative": 3235,
+      "Positive": 3190
+    },
+    "magaza_yorumlari": {
+      "Positive": 435,
+      "Negative": 427
+    },
+    "random": {
+      "Notr": 43
+    },
+    "tweet-pn": {
+      "Positive": 584,
+      "Negative": 512
+    },
+    "urun_yorumlari": {
+      "Positive": 22008,
+      "Negative": 1482
+    },
+    "wiki": {
+      "Notr": 17049
+    }
+  }
+}

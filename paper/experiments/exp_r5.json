@@ -1,0 +1,59 @@
+{
+  "model": "dbmdz/bert-base-turkish-cased@b6e1de16",
+  "max_len": 128,
+  "batch": 16,
+  "lr": 3e-05,
+  "epochs": 2,
+  "n": 4900,
+  "runs": [
+    {
+      "seed": 42,
+      "removed": 234,
+      "dedup": 0.9285,
+      "random_removed": 0.9266,
+      "duplication_effect_pts": -0.192,
+      "elapsed_s": 2765
+    },
+    {
+      "seed": 43,
+      "removed": 190,
+      "dedup": 0.9324,
+      "random_removed": 0.9447,
+      "duplication_effect_pts": 1.237,
+      "elapsed_s": 5361
+    },
+    {
+      "seed": 44,
+      "removed": 209,
+      "dedup": 0.9194,
+      "random_removed": 0.9293,
+      "duplication_effect_pts": 0.989,
+      "elapsed_s": 2771
+    },
+    {
+      "seed": 45,
+      "removed": 227,
+      "dedup": 0.9306,
+      "random_removed": 0.9277,
+      "duplication_effect_pts": -0.284,
+      "elapsed_s": 5467
+    },
+    {
+      "seed": 46,
+      "removed": 195,
+      "dedup": 0.9244,
+      "random_removed": 0.9312,
+      "duplication_effect_pts": 0.679,
+      "elapsed_s": 2628
+    }
+  ],
+  "summary": {
+    "random_removed_mean": 0.9319,
+    "duplication_effect_mean_pts": 0.486,
+    "duplication_effect_ci95_pts": [
+      -0.8001,
+      1.7717
+    ]
+  },
+  "seconds": 2627.5
+}

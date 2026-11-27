@@ -9,3 +9,7 @@ paper/*.tex
 paper/*.cls
 paper/*.eps
 paper/*.zip
+paper/manuscript/
+paper/tables/
+models/
+*.log

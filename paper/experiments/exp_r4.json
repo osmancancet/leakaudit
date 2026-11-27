@@ -1,0 +1,71 @@
+{
+  "n_train": 440679,
+  "n_test": 48965,
+  "train_label_counts": {
+    "Positive": 235949,
+    "Notr": 153825,
+    "Negative": 50905
+  },
+  "train_distinct_masked": 438713,
+  "train_uniqueness": 0.9955,
+  "train_dup_groups": 1445,
+  "train_docs_in_dup_groups": 3411,
+  "train_conflict_groups": 78,
+  "test_in_train": 416,
+  "test_in_train_share": 0.0085,
+  "test_in_train_label_agreement_strict": 0.9038,
+  "test_in_train_per_source": {
+    "HUMIR": {
+      "n": 6425,
+      "in_train": 102
+    },
+    "magaza_yorumlari": {
+      "n": 862,
+      "in_train": 50
+    },
+    "random": {
+      "n": 43,
+      "in_train": 4
+    },
+    "tweet-pn": {
+      "n": 1096,
+      "in_train": 4
+    },
+    "urun_yorumlari": {
+      "n": 23490,
+      "in_train": 210
+    },
+    "wiki": {
+      "n": 17049,
+      "in_train": 46
+    }
+  },
+  "train_in_reviews": 211197,
+  "train_in_reviews_share": 0.4793,
+  "train_per_source": {
+    "HUMIR": {
+      "n": 58575,
+      "in_reviews": 179
+    },
+    "magaza_yorumlari": {
+      "n": 7627,
+      "in_reviews": 401
+    },
+    "random": {
+      "n": 461,
+      "in_reviews": 23
+    },
+    "tweet-pn": {
+      "n": 9959,
+      "in_reviews": 7
+    },
+    "urun_yorumlari": {
+      "n": 210693,
+      "in_reviews": 210585
+    },
+    "wiki": {
+      "n": 153364,
+      "in_reviews": 2
+    }
+  }
+}

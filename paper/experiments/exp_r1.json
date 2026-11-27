@@ -1,0 +1,588 @@
+{
+  "leakaudit_version": "0.2.0",
+  "E5": {
+    "TTC-4900": {
+      "n": 4900,
+      "runs": [
+        {
+          "seed": 42,
+          "overlap": 0.201,
+          "train_removed": 234,
+          "lr": {
+            "full_train": 0.9336,
+            "dedup_train": 0.9255,
+            "inflation_pts": 0.812,
+            "acc_overlapping": 1.0,
+            "acc_non_overlapping": 0.917
+          },
+          "knn1": {
+            "full_train": 0.9041,
+            "dedup_train": 0.8804,
+            "inflation_pts": 2.377,
+            "acc_overlapping": 1.0,
+            "acc_non_overlapping": 0.8799
+          }
+        },
+        {
+          "seed": 43,
+          "overlap": 0.1796,
+          "train_removed": 190,
+          "lr": {
+            "full_train": 0.9144,
+            "dedup_train": 0.9084,
+            "inflation_pts": 0.601,
+            "acc_overlapping": 0.9773,
+            "acc_non_overlapping": 0.9005
+          },
+          "knn1": {
+            "full_train": 0.8735,
+            "dedup_train": 0.8597,
+            "inflation_pts": 1.382,
+            "acc_overlapping": 0.9773,
+            "acc_non_overlapping": 0.8507
+          }
+        },
+        {
+          "seed": 44,
+          "overlap": 0.1827,
+          "train_removed": 209,
+          "lr": {
+            "full_train": 0.905,
+            "dedup_train": 0.897,
+            "inflation_pts": 0.796,
+            "acc_overlapping": 0.9888,
+            "acc_non_overlapping": 0.8864
+          },
+          "knn1": {
+            "full_train": 0.8772,
+            "dedup_train": 0.8584,
+            "inflation_pts": 1.889,
+            "acc_overlapping": 0.9944,
+            "acc_non_overlapping": 0.8514
+          }
+        },
+        {
+          "seed": 45,
+          "overlap": 0.1939,
+          "train_removed": 227,
+          "lr": {
+            "full_train": 0.9162,
+            "dedup_train": 0.9071,
+            "inflation_pts": 0.912,
+            "acc_overlapping": 0.9895,
+            "acc_non_overlapping": 0.8987
+          },
+          "knn1": {
+            "full_train": 0.884,
+            "dedup_train": 0.8607,
+            "inflation_pts": 2.33,
+            "acc_overlapping": 0.9947,
+            "acc_non_overlapping": 0.857
+          }
+        },
+        {
+          "seed": 46,
+          "overlap": 0.1684,
+          "train_removed": 195,
+          "lr": {
+            "full_train": 0.9181,
+            "dedup_train": 0.9113,
+            "inflation_pts": 0.688,
+            "acc_overlapping": 0.9818,
+            "acc_non_overlapping": 0.9055
+          },
+          "knn1": {
+            "full_train": 0.8866,
+            "dedup_train": 0.8686,
+            "inflation_pts": 1.802,
+            "acc_overlapping": 0.9818,
+            "acc_non_overlapping": 0.8675
+          }
+        }
+      ],
+      "lr": {
+        "inflation_mean_pts": 0.762,
+        "inflation_sd_pts": 0.12,
+        "nb_ci95_pts": [
+          0.5384,
+          0.9852
+        ]
+      },
+      "knn1": {
+        "inflation_mean_pts": 1.956,
+        "inflation_sd_pts": 0.411,
+        "nb_ci95_pts": [
+          1.191,
+          2.721
+        ]
+      }
+    },
+    "Product reviews": {
+      "n": 50000,
+      "runs": [
+        {
+          "seed": 42,
+          "overlap": 0.0123,
+          "train_removed": 170,
+          "lr": {
+            "full_train": 0.7508,
+            "dedup_train": 0.7523,
+            "inflation_pts": -0.15,
+            "acc_overlapping": 0.9512,
+            "acc_non_overlapping": 0.9262
+          },
+          "knn1": {
+            "full_train": 0.6311,
+            "dedup_train": 0.6304,
+            "inflation_pts": 0.068,
+            "acc_overlapping": 0.9593,
+            "acc_non_overlapping": 0.9211
+          }
+        },
+        {
+          "seed": 43,
+          "overlap": 0.0119,
+          "train_removed": 192,
+          "lr": {
+            "full_train": 0.7463,
+            "dedup_train": 0.7481,
+            "inflation_pts": -0.188,
+            "acc_overlapping": 0.9412,
+            "acc_non_overlapping": 0.9212
+          },
+          "knn1": {
+            "full_train": 0.6365,
+            "dedup_train": 0.6379,
+            "inflation_pts": -0.148,
+            "acc_overlapping": 0.958,
+            "acc_non_overlapping": 0.9215
+          }
+        },
+        {
+          "seed": 44,
+          "overlap": 0.0105,
+          "train_removed": 163,
+          "lr": {
+            "full_train": 0.7346,
+            "dedup_train": 0.7364,
+            "inflation_pts": -0.176,
+            "acc_overlapping": 0.9143,
+            "acc_non_overlapping": 0.9193
+          },
+          "knn1": {
+            "full_train": 0.6161,
+            "dedup_train": 0.6202,
+            "inflation_pts": -0.408,
+            "acc_overlapping": 0.8952,
+            "acc_non_overlapping": 0.9178
+          }
+        },
+        {
+          "seed": 45,
+          "overlap": 0.0109,
+          "train_removed": 160,
+          "lr": {
+            "full_train": 0.7416,
+            "dedup_train": 0.7431,
+            "inflation_pts": -0.157,
+            "acc_overlapping": 0.9633,
+            "acc_non_overlapping": 0.9197
+          },
+          "knn1": {
+            "full_train": 0.6259,
+            "dedup_train": 0.6292,
+            "inflation_pts": -0.329,
+            "acc_overlapping": 0.9541,
+            "acc_non_overlapping": 0.9164
+          }
+        },
+        {
+          "seed": 46,
+          "overlap": 0.01,
+          "train_removed": 182,
+          "lr": {
+            "full_train": 0.749,
+            "dedup_train": 0.7487,
+            "inflation_pts": 0.027,
+            "acc_overlapping": 0.95,
+            "acc_non_overlapping": 0.9211
+          },
+          "knn1": {
+            "full_train": 0.6401,
+            "dedup_train": 0.6379,
+            "inflation_pts": 0.222,
+            "acc_overlapping": 0.97,
+            "acc_non_overlapping": 0.9204
+          }
+        }
+      ],
+      "lr": {
+        "inflation_mean_pts": -0.129,
+        "inflation_sd_pts": 0.088,
+        "nb_ci95_pts": [
+          -0.2934,
+          0.0358
+        ]
+      },
+      "knn1": {
+        "inflation_mean_pts": -0.119,
+        "inflation_sd_pts": 0.264,
+        "nb_ci95_pts": [
+          -0.6115,
+          0.3735
+        ]
+      }
+    },
+    "Sentiment (test)": {
+      "n": 48965,
+      "runs": [
+        {
+          "seed": 42,
+          "overlap": 0.003,
+          "train_removed": 39,
+          "lr": {
+            "full_train": 0.899,
+            "dedup_train": 0.9,
+            "inflation_pts": -0.096,
+            "acc_overlapping": 0.8276,
+            "acc_non_overlapping": 0.9378
+          },
+          "knn1": {
+            "full_train": 0.8022,
+            "dedup_train": 0.8024,
+            "inflation_pts": -0.02,
+            "acc_overlapping": 0.8621,
+            "acc_non_overlapping": 0.8755
+          }
+        },
+        {
+          "seed": 43,
+          "overlap": 0.004,
+          "train_removed": 44,
+          "lr": {
+            "full_train": 0.9021,
+            "dedup_train": 0.9038,
+            "inflation_pts": -0.172,
+            "acc_overlapping": 0.9487,
+            "acc_non_overlapping": 0.9391
+          },
+          "knn1": {
+            "full_train": 0.7987,
+            "dedup_train": 0.8025,
+            "inflation_pts": -0.381,
+            "acc_overlapping": 0.9744,
+            "acc_non_overlapping": 0.8716
+          }
+        },
+        {
+          "seed": 44,
+          "overlap": 0.0036,
+          "train_removed": 40,
+          "lr": {
+            "full_train": 0.8904,
+            "dedup_train": 0.8897,
+            "inflation_pts": 0.07,
+            "acc_overlapping": 0.8286,
+            "acc_non_overlapping": 0.932
+          },
+          "knn1": {
+            "full_train": 0.792,
+            "dedup_train": 0.794,
+            "inflation_pts": -0.208,
+            "acc_overlapping": 0.8571,
+            "acc_non_overlapping": 0.8679
+          }
+        },
+        {
+          "seed": 45,
+          "overlap": 0.0042,
+          "train_removed": 48,
+          "lr": {
+            "full_train": 0.8978,
+            "dedup_train": 0.8994,
+            "inflation_pts": -0.151,
+            "acc_overlapping": 0.9268,
+            "acc_non_overlapping": 0.9364
+          },
+          "knn1": {
+            "full_train": 0.7978,
+            "dedup_train": 0.7967,
+            "inflation_pts": 0.107,
+            "acc_overlapping": 0.878,
+            "acc_non_overlapping": 0.8726
+          }
+        },
+        {
+          "seed": 46,
+          "overlap": 0.0044,
+          "train_removed": 42,
+          "lr": {
+            "full_train": 0.8996,
+            "dedup_train": 0.8989,
+            "inflation_pts": 0.07,
+            "acc_overlapping": 0.8605,
+            "acc_non_overlapping": 0.9391
+          },
+          "knn1": {
+            "full_train": 0.7988,
+            "dedup_train": 0.8004,
+            "inflation_pts": -0.16,
+            "acc_overlapping": 0.907,
+            "acc_non_overlapping": 0.8719
+          }
+        }
+      ],
+      "lr": {
+        "inflation_mean_pts": -0.056,
+        "inflation_sd_pts": 0.118,
+        "nb_ci95_pts": [
+          -0.2758,
+          0.1642
+        ]
+      },
+      "knn1": {
+        "inflation_mean_pts": -0.132,
+        "inflation_sd_pts": 0.186,
+        "nb_ci95_pts": [
+          -0.4786,
+          0.2138
+        ]
+      }
+    },
+    "TurkPhish v1": {
+      "n": 7504,
+      "runs": [
+        {
+          "seed": 42,
+          "overlap": 0.9993,
+          "train_removed": 6000,
+          "infeasible": "removing duplicates of the test part leaves a class without training documents"
+        },
+        {
+          "seed": 43,
+          "overlap": 1.0,
+          "train_removed": 5999,
+          "infeasible": "removing duplicates of the test part leaves a class without training documents"
+        },
+        {
+          "seed": 44,
+          "overlap": 1.0,
+          "train_removed": 5999,
+          "infeasible": "removing duplicates of the test part leaves a class without training documents"
+        },
+        {
+          "seed": 45,
+          "overlap": 0.9993,
+          "train_removed": 6000,
+          "infeasible": "removing duplicates of the test part leaves a class without training documents"
+        },
+        {
+          "seed": 46,
+          "overlap": 0.9993,
+          "train_removed": 6000,
+          "infeasible": "removing duplicates of the test part leaves a class without training documents"
+        }
+      ]
+    }
+  },
+  "E6": {
+    "base_n": 2653,
+    "base_layer1": {
+      "template_uniqueness": 1.0,
+      "near_dup_pairs": 0,
+      "label_conflicting_duplicate_groups": 0
+    },
+    "planted_duplicates": [
+      {
+        "rate": 0.01,
+        "injected": 26,
+        "template_uniqueness": 0.9903,
+        "near_dup_pairs": 26,
+        "duplicate_groups": 26
+      },
+      {
+        "rate": 0.05,
+        "injected": 132,
+        "template_uniqueness": 0.9526,
+        "near_dup_pairs": 132,
+        "duplicate_groups": 132
+      },
+      {
+        "rate": 0.1,
+        "injected": 265,
+        "template_uniqueness": 0.9092,
+        "near_dup_pairs": 265,
+        "duplicate_groups": 265
+      }
+    ],
+    "planted_opening": [
+      {
+        "p": 0.0,
+        "first3_R": 0.0063,
+        "first3_R_ci95": [
+          -0.0337,
+          0.0467
+        ],
+        "full": 0.9763
+      },
+      {
+        "p": 0.1,
+        "first3_R": 0.0733,
+        "first3_R_ci95": [
+          0.0372,
+          0.1113
+        ],
+        "full": 0.9789
+      },
+      {
+        "p": 0.25,
+        "first3_R": 0.1655,
+        "first3_R_ci95": [
+          0.1292,
+          0.201
+        ],
+        "full": 0.9819
+      },
+      {
+        "p": 0.5,
+        "first3_R": 0.4313,
+        "first3_R_ci95": [
+          0.3973,
+          0.4692
+        ],
+        "full": 0.9834
+      },
+      {
+        "p": 1.0,
+        "first3_R": 1.0015,
+        "first3_R_ci95": [
+          0.9954,
+          1.0076
+        ],
+        "full": 0.9966
+      }
+    ],
+    "planted_metadata": [
+      {
+        "agreement": 0.5,
+        "R": 0.0183,
+        "R_ci95": [
+          -0.0213,
+          0.0536
+        ],
+        "raw_ratio": 0.5211
+      },
+      {
+        "agreement": 0.6,
+        "R": 0.186,
+        "R_ci95": [
+          0.146,
+          0.2252
+        ],
+        "raw_ratio": 0.6029
+      },
+      {
+        "agreement": 0.75,
+        "R": 0.51,
+        "R_ci95": [
+          0.4777,
+          0.5468
+        ],
+        "raw_ratio": 0.761
+      },
+      {
+        "agreement": 0.9,
+        "R": 0.8179,
+        "R_ci95": [
+          0.7898,
+          0.8443
+        ],
+        "raw_ratio": 0.9112
+      },
+      {
+        "agreement": 1.0,
+        "R": 1.0499,
+        "R_ci95": [
+          1.0375,
+          1.0616
+        ],
+        "raw_ratio": 1.0243
+      }
+    ],
+    "balance": [
+      {
+        "minority_share": 0.5,
+        "n": 2594,
+        "R": 0.4227,
+        "raw_ratio": 0.7158,
+        "majority_based": 0.5704
+      },
+      {
+        "minority_share": 0.2,
+        "n": 1621,
+        "R": 0.5251,
+        "raw_ratio": 0.7649,
+        "majority_based": 0.5734
+      },
+      {
+        "minority_share": 0.059,
+        "n": 1379,
+        "R": 0.2656,
+        "raw_ratio": 0.6574,
+        "majority_based": 0.2906
+      }
+    ]
+  },
+  "E7": {
+    "n": 20000,
+    "sources": {
+      "HUMIR": {
+        "n": 2617,
+        "label_shares": {
+          "Positive": 0.51,
+          "Negative": 0.49
+        },
+        "within_source_macro_f1": 0.8817
+      },
+      "magaza_yorumlari": {
+        "n": 363,
+        "label_shares": {
+          "Negative": 0.504,
+          "Positive": 0.496
+        },
+        "within_source_macro_f1": 0.8763
+      },
+      "random": {
+        "n": 14,
+        "label_shares": {
+          "Notr": 1.0
+        }
+      },
+      "tweet-pn": {
+        "n": 455,
+        "label_shares": {
+          "Positive": 0.543,
+          "Negative": 0.457
+        },
+        "within_source_macro_f1": 0.7789
+      },
+      "urun_yorumlari": {
+        "n": 9571,
+        "label_shares": {
+          "Positive": 0.935,
+          "Negative": 0.065
+        },
+        "within_source_macro_f1": 0.716
+      },
+      "wiki": {
+        "n": 6980,
+        "label_shares": {
+          "Notr": 1.0
+        }
+      }
+    },
+    "source_from_text_macro_f1": 0.6398,
+    "source_chance": 0.1667
+  },
+  "seconds": 2427.7
+}

@@ -1,6 +1,6 @@
 {
   "tool": "leakaudit",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "corpus": "Turkish product reviews (sentiment)",
   "text_column": "sentence",
   "label_column": "sentiment",
@@ -18,85 +18,136 @@
     "near_dup_cap": 50000,
     "jaccard_threshold": 0.8,
     "folds": 5,
+    "grouped_splits": true,
+    "language": "tr",
     "thresholds": {
       "min_template_uniqueness": 0.95,
       "max_near_dup_pairs": 0,
       "max_label_conflicting_groups": 0,
       "max_normalized_recovery": 0.5,
-      "min_lookup_margin": 0.1
+      "max_lookup_recovery": 0.5
     }
   },
   "layer1": {
     "n_documents": 235144,
-    "template_uniqueness": 0.9926,
+    "template_uniqueness": 0.992,
     "template_uniqueness_per_class": {
-      "0": 0.9971,
-      "1": 0.9926
+      "0": 0.9965,
+      "1": 0.992
     },
-    "distinct_masked_templates": 233393,
-    "duplicate_groups": 1112,
-    "documents_in_duplicate_groups": 2863,
-    "label_conflicting_duplicate_groups": 80,
+    "distinct_masked_templates": 233257,
+    "duplicate_groups": 1145,
+    "documents_in_duplicate_groups": 3032,
+    "label_conflicting_duplicate_groups": 77,
     "near_dup_sample_size": 50000,
     "near_dup_jaccard_threshold": 0.8,
-    "near_dup_pairs": 571,
-    "near_dup_pairs_non_identical": 420,
-    "near_dup_pairs_cross_label": 22,
-    "near_dup_max_jaccard": 1.0
+    "near_dup_pairs": 652,
+    "near_dup_pairs_identical": 175,
+    "near_dup_pairs_non_identical": 477,
+    "near_dup_pairs_cross_label": 26,
+    "near_dup_documents_affected": 3282,
+    "near_dup_pairs_per_1000_docs": 13.04,
+    "near_dup_max_jaccard": 1.0,
+    "lsh_buckets_skipped": 0,
+    "split_groups": 233017
   },
   "layer2": {
-    "full_text_macro_f1": 0.7413,
+    "folds": "grouped",
+    "fold_seed": 42,
+    "full_text_macro_f1": 0.7453,
+    "full_text_macro_f1_random_folds": 0.7408,
     "chance_macro_f1": 0.5,
     "views": {
       "first_3_tokens": {
         "macro_f1": 0.5668,
-        "recovery_ratio": 0.7646,
-        "normalized_recovery": 0.277
+        "recovery_ratio": 0.7605,
+        "normalized_recovery": 0.2725,
+        "normalized_recovery_ci95": [
+          0.237,
+          0.3062
+        ]
       },
       "first_5_tokens": {
-        "macro_f1": 0.5943,
-        "recovery_ratio": 0.8016,
-        "normalized_recovery": 0.3906
+        "macro_f1": 0.6026,
+        "recovery_ratio": 0.8086,
+        "normalized_recovery": 0.4184,
+        "normalized_recovery_ci95": [
+          0.3819,
+          0.4602
+        ]
       },
       "first_10_tokens": {
-        "macro_f1": 0.654,
-        "recovery_ratio": 0.8822,
-        "normalized_recovery": 0.6382
+        "macro_f1": 0.6523,
+        "recovery_ratio": 0.8752,
+        "normalized_recovery": 0.6208,
+        "normalized_recovery_ci95": [
+          0.582,
+          0.6646
+        ]
+      },
+      "random_window_10_tokens": {
+        "macro_f1": 0.6412,
+        "recovery_ratio": 0.8603,
+        "normalized_recovery": 0.5755,
+        "normalized_recovery_ci95": [
+          0.535,
+          0.6167
+        ]
       },
       "punctuation_emoji_case_profile": {
-        "macro_f1": 0.1586,
-        "recovery_ratio": 0.214,
-        "normalized_recovery": 0.0
+        "macro_f1": 0.1578,
+        "recovery_ratio": 0.2118,
+        "normalized_recovery": -1.395,
+        "normalized_recovery_ci95": [
+          -1.468,
+          -1.3225
+        ]
       },
       "length_only": {
-        "macro_f1": 0.3488,
-        "recovery_ratio": 0.4705,
-        "normalized_recovery": 0.0
+        "macro_f1": 0.4119,
+        "recovery_ratio": 0.5526,
+        "normalized_recovery": -0.3593,
+        "normalized_recovery_ci95": [
+          -0.3926,
+          -0.3282
+        ]
       }
     },
     "length_ks_D": 0.0226,
     "length_ks_p": 0.5778,
-    "max_normalized_recovery": 0.6382,
+    "max_normalized_recovery": 0.6208,
     "max_view": "first_10_tokens"
   },
   "layer3": {
+    "split": "grouped",
     "test_size": 4000,
     "sentence_inventory": {
       "0": {
-        "sentence_types": 1813,
-        "exclusive_types": 1808,
-        "top40_exclusive_coverage": 0.0319
+        "sentence_types": 1828,
+        "exclusive_types": 1823,
+        "top40_exclusive_coverage": 0.0
       },
       "1": {
-        "sentence_types": 27862,
-        "exclusive_types": 27857,
-        "top40_exclusive_coverage": 0.0087
+        "sentence_types": 28035,
+        "exclusive_types": 28030,
+        "top40_exclusive_coverage": 0.0059
       }
     },
-    "lookup_rule_macro_f1": 0.4837,
-    "trained_reference_macro_f1": 0.7357,
-    "trained_reference_accuracy": 0.9305,
-    "margin": 0.252
+    "lookup_rule_macro_f1": 0.4836,
+    "lookup_fallback_rate": 0.9795,
+    "majority_constant_macro_f1": 0.4838,
+    "trained_reference_macro_f1": 0.7435,
+    "trained_reference_accuracy": 0.931,
+    "margin": 0.2599,
+    "margin_ci95": [
+      0.2314,
+      0.2848
+    ],
+    "normalized_lookup_recovery": -0.0673,
+    "normalized_lookup_recovery_ci95": [
+      -0.0768,
+      -0.0588
+    ]
   },
   "certificate": {
     "passed": false,
@@ -105,17 +156,41 @@
       "L1_near_duplicates": false,
       "L1_label_conflicts": false,
       "L2_surface_views": false,
-      "L3_lookup_margin": true
+      "L3_lookup": true
     },
     "reasons": [
-      "571 near-duplicate pairs (Jaccard >= 0.8)",
-      "80 duplicate groups carry conflicting labels",
-      "view 'first_10_tokens' recovers 64% of above-chance full-text performance"
+      "652 near-duplicate pairs (Jaccard >= 0.8)",
+      "77 duplicate groups carry conflicting labels",
+      "view 'first_10_tokens' recovers 62% of above-chance full-text performance"
+    ],
+    "warnings": [
+      "the sentence lookup fell back to the majority class for 98% of test documents; check L3 is not informative here"
     ]
   },
+  "certificate_content_aware": {
+    "passed": false,
+    "checks": {
+      "L1_template_uniqueness": true,
+      "L1_near_duplicates": false,
+      "L1_label_conflicts": true,
+      "L2_surface_views": true,
+      "L3_lookup": true
+    },
+    "worst_view": "first_10_tokens",
+    "lookup_informative": false,
+    "thresholds": {
+      "min_template_uniqueness": 0.95,
+      "max_near_dup_pairs_per_1000": 1.0,
+      "max_label_conflicts_per_1000": 1.0,
+      "max_opening_excess": 0.25,
+      "max_normalized_recovery": 0.5,
+      "max_lookup_recovery": 0.5,
+      "max_lookup_fallback": 0.9
+    }
+  },
   "seconds": {
-    "layer1": 12.6,
-    "layer2": 25.6,
-    "layer3": 3.9
+    "layer1": 23.0,
+    "layer2": 123.8,
+    "layer3": 11.9
   }
 }
