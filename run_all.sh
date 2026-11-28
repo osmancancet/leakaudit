@@ -37,6 +37,8 @@ $PY paper/experiments/exp_r9_null_anchor.py . paper/experiments/exp_r9.json
 $PY paper/experiments/exp_r10_specificity.py data paper/experiments/exp_r10.json
 $PY paper/experiments/exp_r12_inflation_en.py data paper/experiments/exp_r12_imdb.json IMDB
 $PY paper/experiments/exp_r12_inflation_en.py data paper/experiments/exp_r12_ag.json "AG News"
+# R13 (BERTurk as layer 2 reference for the TTC-4900 opening check, ~50 min per seed on CPU; same environment as R5):
+# $PY paper/experiments/exp_r13_berturk_views.py data models/berturk paper/experiments/exp_r13.json 42,43,44
 # R11 (Cleanlab Datalab; run in a separate environment with cleanlab[datalab]==2.9.0):
 # python paper/experiments/exp_r11_cleanlab.py data paper/experiments/exp_r11.json
 $PY paper/experiments/make_figures.py .

@@ -383,6 +383,15 @@ for fn, key, nm in (("imdb", "imdb", "IMDB"), ("ag", "ag", "AG News")):
     N[f"r12.{key}.share"] = pct(sum(sh) / len(sh), 1)
     N[f"r12.{key}.lr"], N[f"r12.{key}.knn"] = f(d["lr"]["duplication_effect_mean_pts"], 2), f(d["knn1"]["duplication_effect_mean_pts"], 2)
     N[f"r12.{key}.lr_ci"], N[f"r12.{key}.knn_ci"] = ci(d["lr"]["duplication_effect_ci95_pts"]), ci(d["knn1"]["duplication_effect_ci95_pts"])
+# R13: TTC-4900 opening check with fine-tuned BERTurk as reference
+d13 = json.load(open(EXP / "exp_r13.json")); runs13 = d13["runs"]
+N["r13.nseeds"] = str(len(runs13))
+for m, k in (("berturk", "b"), ("tfidf", "t")):
+    N[f"r13.{k}.full"] = f(d13[f"{m}_full_mean"], 3)
+    N[f"r13.{k}.ex"] = f(d13[f"{m}_max_excess_mean"], 2)
+    N[f"r13.{k}.exr"] = f(d13[f"{m}_max_excess_range"][0], 2) + " to " + f(d13[f"{m}_max_excess_range"][1], 2)
+    N[f"r13.{k}.w3"] = f(sum(r[f"{m}_R"]["window_3"] for r in runs13) / len(runs13), 2)
+    N[f"r13.{k}.above"] = str(sum(max(r[f"{m}_excess"].values()) > 0.25 for r in runs13))
 N["ca.passed_raw"] = str(sum(content_aware_certificate(R[k])["passed"] for k, _ in CORP))
 (ROOT / "paper" / "numbers.json").write_text(json.dumps(N, indent=1, ensure_ascii=False))
 
