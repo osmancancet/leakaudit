@@ -1,6 +1,6 @@
 {
   "tool": "leakaudit",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "corpus": "Turkish sentiment analysis dataset (test split)",
   "text_column": "text",
   "label_column": "label",
@@ -21,94 +21,176 @@
     "near_dup_cap": 50000,
     "jaccard_threshold": 0.8,
     "folds": 5,
+    "grouped_splits": true,
+    "language": "tr",
     "thresholds": {
       "min_template_uniqueness": 0.95,
       "max_near_dup_pairs": 0,
       "max_label_conflicting_groups": 0,
       "max_normalized_recovery": 0.5,
-      "min_lookup_margin": 0.1
+      "max_lookup_recovery": 0.5
     }
   },
   "layer1": {
     "n_documents": 48965,
-    "template_uniqueness": 0.9992,
+    "template_uniqueness": 0.9991,
     "template_uniqueness_per_class": {
       "0": 0.9991,
       "1": 0.9998,
-      "2": 0.999
+      "2": 0.9989
     },
-    "distinct_masked_templates": 48925,
-    "duplicate_groups": 34,
-    "documents_in_duplicate_groups": 74,
-    "label_conflicting_duplicate_groups": 6,
+    "distinct_masked_templates": 48920,
+    "duplicate_groups": 39,
+    "documents_in_duplicate_groups": 84,
+    "label_conflicting_duplicate_groups": 8,
     "near_dup_sample_size": 48965,
     "near_dup_jaccard_threshold": 0.8,
-    "near_dup_pairs": 120,
-    "near_dup_pairs_non_identical": 72,
-    "near_dup_pairs_cross_label": 12,
-    "near_dup_max_jaccard": 1.0
+    "near_dup_pairs": 135,
+    "near_dup_pairs_identical": 53,
+    "near_dup_pairs_non_identical": 82,
+    "near_dup_pairs_cross_label": 15,
+    "near_dup_documents_affected": 209,
+    "near_dup_pairs_per_1000_docs": 2.757,
+    "near_dup_max_jaccard": 1.0,
+    "lsh_buckets_skipped": 0,
+    "split_groups": 48851
   },
   "layer2": {
-    "full_text_macro_f1": 0.8882,
+    "folds": "grouped",
+    "fold_seed": 42,
+    "full_text_macro_f1": 0.888,
+    "full_text_macro_f1_random_folds": 0.888,
     "chance_macro_f1": 0.3333,
     "views": {
       "first_3_tokens": {
-        "macro_f1": 0.6909,
-        "recovery_ratio": 0.7778,
-        "normalized_recovery": 0.6444
+        "macro_f1": 0.6915,
+        "recovery_ratio": 0.7787,
+        "normalized_recovery": 0.6457,
+        "normalized_recovery_ci95": [
+          0.6322,
+          0.6579
+        ],
+        "permuted_label_macro_f1": 0.3349
       },
       "first_5_tokens": {
-        "macro_f1": 0.7365,
+        "macro_f1": 0.7363,
         "recovery_ratio": 0.8292,
-        "normalized_recovery": 0.7266
+        "normalized_recovery": 0.7265,
+        "normalized_recovery_ci95": [
+          0.7135,
+          0.7384
+        ],
+        "permuted_label_macro_f1": 0.341
       },
       "first_10_tokens": {
-        "macro_f1": 0.8062,
-        "recovery_ratio": 0.9077,
-        "normalized_recovery": 0.8523
+        "macro_f1": 0.8078,
+        "recovery_ratio": 0.9096,
+        "normalized_recovery": 0.8553,
+        "normalized_recovery_ci95": [
+          0.8459,
+          0.8661
+        ],
+        "permuted_label_macro_f1": 0.3368
+      },
+      "random_window_3_tokens": {
+        "macro_f1": 0.643,
+        "recovery_ratio": 0.7241,
+        "normalized_recovery": 0.5583,
+        "normalized_recovery_ci95": [
+          0.5448,
+          0.5719
+        ],
+        "permuted_label_macro_f1": 0.3262
+      },
+      "random_window_5_tokens": {
+        "macro_f1": 0.7073,
+        "recovery_ratio": 0.7965,
+        "normalized_recovery": 0.6742,
+        "normalized_recovery_ci95": [
+          0.662,
+          0.6859
+        ],
+        "permuted_label_macro_f1": 0.3345
+      },
+      "random_window_10_tokens": {
+        "macro_f1": 0.7867,
+        "recovery_ratio": 0.8859,
+        "normalized_recovery": 0.8174,
+        "normalized_recovery_ci95": [
+          0.8057,
+          0.8283
+        ],
+        "permuted_label_macro_f1": 0.3401
       },
       "punctuation_emoji_case_profile": {
-        "macro_f1": 0.2421,
-        "recovery_ratio": 0.2726,
-        "normalized_recovery": 0.0
+        "macro_f1": 0.2439,
+        "recovery_ratio": 0.2746,
+        "normalized_recovery": -0.1613,
+        "normalized_recovery_ci95": [
+          -0.1732,
+          -0.1496
+        ],
+        "permuted_label_macro_f1": 0.2813
       },
       "length_only": {
-        "macro_f1": 0.2911,
-        "recovery_ratio": 0.3278,
-        "normalized_recovery": 0.0
+        "macro_f1": 0.5319,
+        "recovery_ratio": 0.5989,
+        "normalized_recovery": 0.3579,
+        "normalized_recovery_ci95": [
+          0.343,
+          0.371
+        ],
+        "permuted_label_macro_f1": 0.2879
       },
       "metadata:dataset": {
         "macro_f1": 0.8224,
-        "recovery_ratio": 0.9259,
-        "normalized_recovery": 0.8814
+        "recovery_ratio": 0.9261,
+        "normalized_recovery": 0.8817,
+        "normalized_recovery_ci95": [
+          0.8709,
+          0.8921
+        ],
+        "permuted_label_macro_f1": 0.3115
       }
     },
-    "max_normalized_recovery": 0.8814,
+    "max_normalized_recovery": 0.8817,
     "max_view": "metadata:dataset"
   },
   "layer3": {
+    "split": "grouped",
     "test_size": 4000,
     "sentence_inventory": {
       "0": {
-        "sentence_types": 3491,
-        "exclusive_types": 3488,
-        "top40_exclusive_coverage": 0.0196
+        "sentence_types": 3510,
+        "exclusive_types": 3506,
+        "top40_exclusive_coverage": 0.0022
       },
       "1": {
-        "sentence_types": 5490,
-        "exclusive_types": 5490,
-        "top40_exclusive_coverage": 0.0057
+        "sentence_types": 5489,
+        "exclusive_types": 5489,
+        "top40_exclusive_coverage": 0.0
       },
       "2": {
-        "sentence_types": 16092,
-        "exclusive_types": 16089,
-        "top40_exclusive_coverage": 0.0095
+        "sentence_types": 15984,
+        "exclusive_types": 15980,
+        "top40_exclusive_coverage": 0.0033
       }
     },
     "lookup_rule_macro_f1": 0.234,
-    "trained_reference_macro_f1": 0.8855,
-    "trained_reference_accuracy": 0.9293,
-    "margin": 0.6515
+    "lookup_fallback_rate": 0.9912,
+    "majority_constant_macro_f1": 0.2326,
+    "trained_reference_macro_f1": 0.8934,
+    "trained_reference_accuracy": 0.9347,
+    "margin": 0.6594,
+    "margin_ci95": [
+      0.6458,
+      0.6728
+    ],
+    "normalized_lookup_recovery": -0.1774,
+    "normalized_lookup_recovery_ci95": [
+      -0.1867,
+      -0.1678
+    ]
   },
   "certificate": {
     "passed": false,
@@ -117,17 +199,41 @@
       "L1_near_duplicates": false,
       "L1_label_conflicts": false,
       "L2_surface_views": false,
-      "L3_lookup_margin": true
+      "L3_lookup": true
     },
     "reasons": [
-      "120 near-duplicate pairs (Jaccard >= 0.8)",
-      "6 duplicate groups carry conflicting labels",
+      "135 near-duplicate pairs (Jaccard >= 0.8)",
+      "8 duplicate groups carry conflicting labels",
       "view 'metadata:dataset' recovers 88% of above-chance full-text performance"
+    ],
+    "warnings": [
+      "the sentence lookup fell back to the majority class for 99% of test documents; check L3 is not informative here"
     ]
   },
+  "certificate_content_aware": {
+    "passed": false,
+    "checks": {
+      "L1_template_uniqueness": true,
+      "L1_near_duplicates": false,
+      "L1_label_conflicts": true,
+      "L2_surface_views": false,
+      "L3_lookup": true
+    },
+    "worst_view": "metadata:dataset",
+    "lookup_informative": false,
+    "thresholds": {
+      "min_template_uniqueness": 0.95,
+      "max_near_dup_docs_per_1000": 1.0,
+      "max_label_conflicts_per_1000": 1.0,
+      "max_opening_excess": 0.25,
+      "max_normalized_recovery": 0.5,
+      "max_lookup_recovery": 0.5,
+      "max_lookup_fallback": 0.9
+    }
+  },
   "seconds": {
-    "layer1": 7.4,
-    "layer2": 45.1,
-    "layer3": 6.5
+    "layer1": 13.4,
+    "layer2": 1183.1,
+    "layer3": 28.0
   }
 }

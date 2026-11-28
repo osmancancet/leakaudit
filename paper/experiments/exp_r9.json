@@ -1,0 +1,428 @@
+{
+  "turkphish_v1": {
+    "views": {
+      "first_3_tokens": {
+        "R": 0.8413,
+        "R0": 0.8579
+      },
+      "first_5_tokens": {
+        "R": 1.0,
+        "R0": 1.0
+      },
+      "first_10_tokens": {
+        "R": 1.0,
+        "R0": 1.0
+      },
+      "random_window_3_tokens": {
+        "R": 0.9871,
+        "R0": 0.9884
+      },
+      "random_window_5_tokens": {
+        "R": 0.9992,
+        "R0": 0.9993
+      },
+      "random_window_10_tokens": {
+        "R": 0.9996,
+        "R0": 0.9996
+      },
+      "punctuation_emoji_case_profile": {
+        "R": 0.2148,
+        "R0": 0.3518
+      },
+      "length_only": {
+        "R": 0.6496,
+        "R0": 0.6687
+      },
+      "metadata:G\u00f6nderen": {
+        "R": 0.9996,
+        "R0": 0.9996
+      }
+    },
+    "verdict_R": {
+      "L1_template_uniqueness": false,
+      "L1_near_duplicates": false,
+      "L1_label_conflicts": true,
+      "L2_surface_views": false,
+      "L3_lookup": false
+    },
+    "verdict_R0": {
+      "L1_template_uniqueness": false,
+      "L1_near_duplicates": false,
+      "L1_label_conflicts": true,
+      "L2_surface_views": false,
+      "L3_lookup": false
+    },
+    "changed": false
+  },
+  "turkphish_v2": {
+    "views": {
+      "first_3_tokens": {
+        "R": 0.0563,
+        "R0": 0.0923
+      },
+      "first_5_tokens": {
+        "R": 0.7162,
+        "R0": 0.7148
+      },
+      "first_10_tokens": {
+        "R": 0.9992,
+        "R0": 0.9992
+      },
+      "random_window_3_tokens": {
+        "R": 0.2117,
+        "R0": 0.2019
+      },
+      "random_window_5_tokens": {
+        "R": 0.2873,
+        "R0": 0.2784
+      },
+      "random_window_10_tokens": {
+        "R": 0.465,
+        "R0": 0.4577
+      },
+      "punctuation_emoji_case_profile": {
+        "R": -0.0045,
+        "R0": -0.0107
+      },
+      "length_only": {
+        "R": -0.0238,
+        "R0": 0.016
+      }
+    },
+    "verdict_R": {
+      "L1_template_uniqueness": true,
+      "L1_near_duplicates": true,
+      "L1_label_conflicts": true,
+      "L2_surface_views": false,
+      "L3_lookup": false
+    },
+    "verdict_R0": {
+      "L1_template_uniqueness": true,
+      "L1_near_duplicates": true,
+      "L1_label_conflicts": true,
+      "L2_surface_views": false,
+      "L3_lookup": false
+    },
+    "changed": false
+  },
+  "ttc4900": {
+    "views": {
+      "first_3_tokens": {
+        "R": 0.4942,
+        "R0": 0.4952
+      },
+      "first_5_tokens": {
+        "R": 0.6082,
+        "R0": 0.6067
+      },
+      "first_10_tokens": {
+        "R": 0.7694,
+        "R0": 0.7697
+      },
+      "random_window_3_tokens": {
+        "R": 0.203,
+        "R0": 0.1967
+      },
+      "random_window_5_tokens": {
+        "R": 0.2914,
+        "R0": 0.2889
+      },
+      "random_window_10_tokens": {
+        "R": 0.4727,
+        "R0": 0.4643
+      },
+      "punctuation_emoji_case_profile": {
+        "R": -0.0758,
+        "R0": -0.0097
+      },
+      "length_only": {
+        "R": 0.0638,
+        "R0": 0.075
+      }
+    },
+    "verdict_R": {
+      "L1_template_uniqueness": false,
+      "L1_near_duplicates": false,
+      "L1_label_conflicts": true,
+      "L2_surface_views": false,
+      "L3_lookup": true
+    },
+    "verdict_R0": {
+      "L1_template_uniqueness": false,
+      "L1_near_duplicates": false,
+      "L1_label_conflicts": true,
+      "L2_surface_views": false,
+      "L3_lookup": true
+    },
+    "changed": false
+  },
+  "urun_yorum": {
+    "views": {
+      "first_3_tokens": {
+        "R": 0.2725,
+        "R0": 0.2843
+      },
+      "first_5_tokens": {
+        "R": 0.4184,
+        "R0": 0.4144
+      },
+      "first_10_tokens": {
+        "R": 0.6208,
+        "R0": 0.6185
+      },
+      "random_window_3_tokens": {
+        "R": 0.2526,
+        "R0": 0.2769
+      },
+      "random_window_5_tokens": {
+        "R": 0.3368,
+        "R0": 0.3321
+      },
+      "random_window_10_tokens": {
+        "R": 0.5661,
+        "R0": 0.5591
+      },
+      "punctuation_emoji_case_profile": {
+        "R": -1.395,
+        "R0": -1.3766
+      },
+      "length_only": {
+        "R": -0.3593,
+        "R0": 0.0692
+      }
+    },
+    "verdict_R": {
+      "L1_template_uniqueness": true,
+      "L1_near_duplicates": false,
+      "L1_label_conflicts": true,
+      "L2_surface_views": true,
+      "L3_lookup": true
+    },
+    "verdict_R0": {
+      "L1_template_uniqueness": true,
+      "L1_near_duplicates": false,
+      "L1_label_conflicts": true,
+      "L2_surface_views": true,
+      "L3_lookup": true
+    },
+    "changed": false
+  },
+  "duygu": {
+    "views": {
+      "first_3_tokens": {
+        "R": 0.6457,
+        "R0": 0.6447
+      },
+      "first_5_tokens": {
+        "R": 0.7265,
+        "R0": 0.7227
+      },
+      "first_10_tokens": {
+        "R": 0.8553,
+        "R0": 0.8545
+      },
+      "random_window_3_tokens": {
+        "R": 0.5583,
+        "R0": 0.5639
+      },
+      "random_window_5_tokens": {
+        "R": 0.6742,
+        "R0": 0.6735
+      },
+      "random_window_10_tokens": {
+        "R": 0.8174,
+        "R0": 0.8151
+      },
+      "punctuation_emoji_case_profile": {
+        "R": -0.1613,
+        "R0": -0.0616
+      },
+      "length_only": {
+        "R": 0.3579,
+        "R0": 0.4066
+      },
+      "metadata:dataset": {
+        "R": 0.8817,
+        "R0": 0.8862
+      }
+    },
+    "verdict_R": {
+      "L1_template_uniqueness": true,
+      "L1_near_duplicates": false,
+      "L1_label_conflicts": true,
+      "L2_surface_views": false,
+      "L3_lookup": true
+    },
+    "verdict_R0": {
+      "L1_template_uniqueness": true,
+      "L1_near_duplicates": false,
+      "L1_label_conflicts": true,
+      "L2_surface_views": false,
+      "L3_lookup": true
+    },
+    "changed": false
+  },
+  "agnews": {
+    "views": {
+      "first_3_tokens": {
+        "R": 0.6968,
+        "R0": 0.7016
+      },
+      "first_5_tokens": {
+        "R": 0.7681,
+        "R0": 0.7715
+      },
+      "first_10_tokens": {
+        "R": 0.871,
+        "R0": 0.8729
+      },
+      "random_window_3_tokens": {
+        "R": 0.4364,
+        "R0": 0.4377
+      },
+      "random_window_5_tokens": {
+        "R": 0.5727,
+        "R0": 0.5707
+      },
+      "random_window_10_tokens": {
+        "R": 0.7418,
+        "R0": 0.7424
+      },
+      "punctuation_emoji_case_profile": {
+        "R": 0.0671,
+        "R0": 0.0706
+      },
+      "length_only": {
+        "R": 0.0437,
+        "R0": 0.053
+      }
+    },
+    "verdict_R": {
+      "L1_template_uniqueness": true,
+      "L1_near_duplicates": false,
+      "L1_label_conflicts": true,
+      "L2_surface_views": false,
+      "L3_lookup": true
+    },
+    "verdict_R0": {
+      "L1_template_uniqueness": true,
+      "L1_near_duplicates": false,
+      "L1_label_conflicts": true,
+      "L2_surface_views": false,
+      "L3_lookup": true
+    },
+    "changed": false
+  },
+  "ttc4900_clean": {
+    "views": {
+      "first_3_tokens": {
+        "R": 0.5032,
+        "R0": 0.5069
+      },
+      "first_5_tokens": {
+        "R": 0.6089,
+        "R0": 0.6117
+      },
+      "first_10_tokens": {
+        "R": 0.7757,
+        "R0": 0.7786
+      },
+      "random_window_3_tokens": {
+        "R": 0.1861,
+        "R0": 0.1816
+      },
+      "random_window_5_tokens": {
+        "R": 0.2899,
+        "R0": 0.2946
+      },
+      "random_window_10_tokens": {
+        "R": 0.4502,
+        "R0": 0.4462
+      },
+      "punctuation_emoji_case_profile": {
+        "R": -0.0815,
+        "R0": -0.011
+      },
+      "length_only": {
+        "R": 0.0597,
+        "R0": 0.0691
+      }
+    },
+    "verdict_R": {
+      "L1_template_uniqueness": true,
+      "L1_near_duplicates": true,
+      "L1_label_conflicts": true,
+      "L2_surface_views": false,
+      "L3_lookup": true
+    },
+    "verdict_R0": {
+      "L1_template_uniqueness": true,
+      "L1_near_duplicates": true,
+      "L1_label_conflicts": true,
+      "L2_surface_views": false,
+      "L3_lookup": true
+    },
+    "changed": false
+  },
+  "urun_yorum_clean": {
+    "views": {
+      "first_3_tokens": {
+        "R": 0.2534,
+        "R0": 0.3094
+      },
+      "first_5_tokens": {
+        "R": 0.4212,
+        "R0": 0.4294
+      },
+      "first_10_tokens": {
+        "R": 0.6461,
+        "R0": 0.6557
+      },
+      "random_window_3_tokens": {
+        "R": 0.2877,
+        "R0": 0.297
+      },
+      "random_window_5_tokens": {
+        "R": 0.3767,
+        "R0": 0.3786
+      },
+      "random_window_10_tokens": {
+        "R": 0.5433,
+        "R0": 0.5452
+      },
+      "punctuation_emoji_case_profile": {
+        "R": -1.3899,
+        "R0": -1.3794
+      },
+      "length_only": {
+        "R": -0.4488,
+        "R0": -0.0796
+      }
+    },
+    "verdict_R": {
+      "L1_template_uniqueness": true,
+      "L1_near_duplicates": true,
+      "L1_label_conflicts": true,
+      "L2_surface_views": true,
+      "L3_lookup": true
+    },
+    "verdict_R0": {
+      "L1_template_uniqueness": true,
+      "L1_near_duplicates": true,
+      "L1_label_conflicts": true,
+      "L2_surface_views": true,
+      "L3_lookup": true
+    },
+    "changed": false
+  },
+  "summary": {
+    "R_min": -1.395,
+    "R_max": 1.0,
+    "R0_min": -1.3794,
+    "R0_max": 1.0,
+    "n_negative_R": 9,
+    "n_negative_R0": 7,
+    "n_views": 42,
+    "verdicts_changed": []
+  }
+}

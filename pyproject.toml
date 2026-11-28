@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "leakaudit"
-version = "0.1.0"
+version = "0.2.0"
 description = "Leakage and shortcut audit for labelled text corpora: duplicates, surface-view recovery and zero-learning sentence lookup."
 readme = "README.md"
 requires-python = ">=3.9"

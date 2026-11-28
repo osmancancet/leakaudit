@@ -1,0 +1,127 @@
+{
+  "cap": 20000,
+  "IMDB": {
+    "n": 20000,
+    "runs": [
+      {
+        "seed": 42,
+        "removed": 22,
+        "removed_share": 0.0014,
+        "lr": {
+          "full": 0.8922,
+          "dedup": 0.8925,
+          "random_removed": 0.8927,
+          "size_effect_pts": -0.05,
+          "duplication_effect_pts": 0.025
+        },
+        "knn1": {
+          "full": 0.7929,
+          "dedup": 0.7893,
+          "random_removed": 0.7931,
+          "size_effect_pts": -0.025,
+          "duplication_effect_pts": 0.379
+        }
+      },
+      {
+        "seed": 43,
+        "removed": 20,
+        "removed_share": 0.0013,
+        "lr": {
+          "full": 0.9025,
+          "dedup": 0.901,
+          "random_removed": 0.9017,
+          "size_effect_pts": 0.075,
+          "duplication_effect_pts": 0.075
+        },
+        "knn1": {
+          "full": 0.7888,
+          "dedup": 0.7875,
+          "random_removed": 0.7888,
+          "size_effect_pts": 0.0,
+          "duplication_effect_pts": 0.127
+        }
+      },
+      {
+        "seed": 44,
+        "removed": 26,
+        "removed_share": 0.0016,
+        "lr": {
+          "full": 0.9015,
+          "dedup": 0.9025,
+          "random_removed": 0.9037,
+          "size_effect_pts": -0.225,
+          "duplication_effect_pts": 0.125
+        },
+        "knn1": {
+          "full": 0.7964,
+          "dedup": 0.7951,
+          "random_removed": 0.7966,
+          "size_effect_pts": -0.025,
+          "duplication_effect_pts": 0.153
+        }
+      },
+      {
+        "seed": 45,
+        "removed": 23,
+        "removed_share": 0.0014,
+        "lr": {
+          "full": 0.8892,
+          "dedup": 0.8885,
+          "random_removed": 0.89,
+          "size_effect_pts": -0.075,
+          "duplication_effect_pts": 0.15
+        },
+        "knn1": {
+          "full": 0.7762,
+          "dedup": 0.7744,
+          "random_removed": 0.776,
+          "size_effect_pts": 0.025,
+          "duplication_effect_pts": 0.153
+        }
+      },
+      {
+        "seed": 46,
+        "removed": 35,
+        "removed_share": 0.0022,
+        "lr": {
+          "full": 0.8987,
+          "dedup": 0.897,
+          "random_removed": 0.8977,
+          "size_effect_pts": 0.1,
+          "duplication_effect_pts": 0.075
+        },
+        "knn1": {
+          "full": 0.7901,
+          "dedup": 0.7873,
+          "random_removed": 0.7899,
+          "size_effect_pts": 0.027,
+          "duplication_effect_pts": 0.253
+        }
+      }
+    ],
+    "lr": {
+      "duplication_effect_mean_pts": 0.09,
+      "duplication_effect_ci95_pts": [
+        -0.0008,
+        0.1808
+      ],
+      "size_effect_mean_pts": -0.035,
+      "size_effect_ci95_pts": [
+        -0.2783,
+        0.2083
+      ]
+    },
+    "knn1": {
+      "duplication_effect_mean_pts": 0.213,
+      "duplication_effect_ci95_pts": [
+        0.0182,
+        0.4078
+      ],
+      "size_effect_mean_pts": 0.0,
+      "size_effect_ci95_pts": [
+        -0.0471,
+        0.0479
+      ]
+    }
+  }
+}

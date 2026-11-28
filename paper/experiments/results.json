@@ -6,10 +6,13 @@
       "masked": 0.0079
     },
     "threshold_sweep": {
-      "pairs_j0.7": 344355,
-      "pairs_j0.8": 336640,
-      "pairs_j0.9": 328042,
-      "sample": 7504
+      "pairs_j0.7": 10042940,
+      "non_identical_j0.7": 9403006,
+      "sample": 7504,
+      "pairs_j0.8": 4478487,
+      "non_identical_j0.8": 3838553,
+      "pairs_j0.9": 730790,
+      "non_identical_j0.9": 90856
     },
     "split_inflation": {
       "n": 7504,
@@ -35,9 +38,12 @@
     },
     "threshold_sweep": {
       "pairs_j0.7": 753,
+      "non_identical_j0.7": 334,
+      "sample": 4900,
       "pairs_j0.8": 717,
+      "non_identical_j0.8": 298,
       "pairs_j0.9": 664,
-      "sample": 4900
+      "non_identical_j0.9": 245
     },
     "split_inflation": {
       "n": 4900,
@@ -52,64 +58,70 @@
   },
   "Product reviews": {
     "masking": {
-      "lowercase_only": 0.9928,
-      "masked": 0.9926
+      "lowercase_only": 0.9922,
+      "masked": 0.992
     },
     "threshold_sweep": {
-      "pairs_j0.7": 1043,
-      "pairs_j0.8": 571,
-      "pairs_j0.9": 290,
-      "sample": 50000
+      "pairs_j0.7": 1152,
+      "non_identical_j0.7": 977,
+      "sample": 50000,
+      "pairs_j0.8": 652,
+      "non_identical_j0.8": 477,
+      "pairs_j0.9": 336,
+      "non_identical_j0.9": 161
     },
     "split_inflation": {
       "n": 50000,
-      "n_groups": 49649,
-      "random_test_with_group_in_train": 0.011,
-      "random_split_macro_f1": 0.7497,
-      "grouped_split_macro_f1": 0.7429,
+      "n_groups": 49617,
+      "random_test_with_group_in_train": 0.0123,
+      "random_split_macro_f1": 0.7508,
+      "grouped_split_macro_f1": 0.7438,
       "grouped_split_seed": 42,
-      "grouped_test_size": 10011,
-      "inflation": 0.0068
+      "grouped_test_size": 10008,
+      "inflation": 0.007
     }
   },
   "Sentiment (test)": {
     "masking": {
-      "lowercase_only": 0.9992,
-      "masked": 0.9992
+      "lowercase_only": 0.9991,
+      "masked": 0.9991
     },
     "threshold_sweep": {
-      "pairs_j0.7": 276,
-      "pairs_j0.8": 120,
-      "pairs_j0.9": 69,
-      "sample": 48965
+      "pairs_j0.7": 295,
+      "non_identical_j0.7": 242,
+      "sample": 48965,
+      "pairs_j0.8": 135,
+      "non_identical_j0.8": 82,
+      "pairs_j0.9": 78,
+      "non_identical_j0.9": 25
     },
     "split_inflation": {
       "n": 48965,
-      "n_groups": 48860,
-      "random_test_with_group_in_train": 0.0029,
-      "random_split_macro_f1": 0.8987,
-      "grouped_split_macro_f1": 0.8985,
+      "n_groups": 48851,
+      "random_test_with_group_in_train": 0.003,
+      "random_split_macro_f1": 0.899,
+      "grouped_split_macro_f1": 0.9047,
       "grouped_split_seed": 42,
-      "grouped_test_size": 9796,
-      "inflation": 0.0002
+      "grouped_test_size": 9788,
+      "inflation": -0.0057
     }
   },
   "runtime_layer1_product_reviews": [
     {
       "n": 25000,
-      "seconds": 4.0
+      "seconds": 7.3
     },
     {
       "n": 50000,
-      "seconds": 8.9
+      "seconds": 16.2
     },
     {
       "n": 100000,
-      "seconds": 21.5
+      "seconds": 40.5
     },
     {
       "n": 235144,
-      "seconds": 109.4
+      "seconds": 127.3
     }
   ]
 }

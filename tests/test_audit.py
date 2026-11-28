@@ -70,3 +70,69 @@ def test_label_conflict_detected():
     r = audit(df, "text", "label")
     assert r["layer1"]["label_conflicting_duplicate_groups"] == 1
     assert not r["certificate"]["checks"]["L1_label_conflicts"]
+
+
+def test_clean_corpus_passes_certificate():
+    """Negative control: no duplicates, no fixed openings, cues spread over the text."""
+    r = audit(_diverse_corpus(), "text", "label")
+    assert r["certificate"]["passed"], r["certificate"]["reasons"]
+
+
+def test_identical_pairs_counted_analytically():
+    df = _diverse_corpus()
+    extra = pd.concat([df.iloc[[0]]] * 300, ignore_index=True)  # one cluster larger than the LSH bucket cap
+    r = audit(pd.concat([df, extra], ignore_index=True), "text", "label")
+    assert r["layer1"]["near_dup_pairs_identical"] == 301 * 300 // 2
+    assert r["layer1"]["lsh_buckets_skipped"] == 0
+
+
+def test_language_option_lowercasing():
+    from leakaudit import text as T
+    try:
+        T.set_language("generic")
+        assert T.tr_lower("ISTANBUL") == "istanbul"
+        T.set_language("tr")
+        assert T.tr_lower("ISTANBUL") == "ıstanbul"
+        assert T.tr_lower("İSTANBUL") == "istanbul"
+    finally:
+        T.set_language("tr")
+
+
+def test_user_split_overlap_reported():
+    import pandas as pd
+    from leakaudit import audit
+    rows = []
+    for i in range(60):
+        rows.append({"text": f"belge numara {i} konu alpha beta gamma kelime{i} ek{i*7}", "label": i % 2,
+                     "split": "train" if i < 48 else "test"})
+    rows.append({"text": rows[50]["text"], "label": rows[50]["label"], "split": "train"})
+    r = audit(pd.DataFrame(rows), text="text", label="label", split="split")
+    assert r["layer3"]["user_split_test_overlap"] > 0
+    assert any("given test split" in w for w in r["certificate"]["warnings"])
+
+
+def test_content_aware_certificate_is_reported():
+    import pandas as pd
+    from leakaudit import audit
+    rows = [{"text": f"metin {i} kelime{i} başka{i*3} sözcük{i*5} ve devamı", "label": i % 2} for i in range(80)]
+    r = audit(pd.DataFrame(rows), text="text", label="label")
+    ca = r["certificate_content_aware"]
+    assert set(ca["checks"]) == set(r["certificate"]["checks"])
+    assert ca["checks"]["L1_near_duplicates"]
+
+
+def test_matched_windows_null_and_group_bootstrap():
+    import numpy as np
+    from leakaudit.layers import _boot_index
+    rep = audit(_diverse_corpus(), "text", "label")
+    views = rep["layer2"]["views"]
+    for k in (3, 5, 10):
+        assert f"random_window_{k}_tokens" in views
+    chance = rep["layer2"]["chance_macro_f1"]
+    for v in views.values():  # permuted labels carry no signal: the null never clearly exceeds 1/C
+        assert v["permuted_label_macro_f1"] <= chance + 0.05
+    # a group bootstrap draws whole groups: members of a group appear equally often
+    groups = np.array([0, 0, 0, 1, 2, 3])
+    b = _boot_index(np.random.RandomState(0), len(groups), groups)
+    counts = np.bincount(b, minlength=6)
+    assert counts[0] == counts[1] == counts[2]

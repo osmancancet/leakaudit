@@ -43,19 +43,28 @@ def jaccard(a: Set[str], b: Set[str]) -> float:
 
 def near_duplicate_pairs(shingle_sets: Sequence[Set[str]], threshold: float = 0.8,
                          num_perm: int = 128, bands: int = 32, max_bucket: int = 200,
-                         seed: int = 1) -> Tuple[List[Tuple[int, int, float]], float]:
-    """Return verified pairs (i, j, jaccard) with jaccard >= threshold and the max jaccard seen."""
+                         seed: int = 1, return_skipped: bool = False):
+    """Return verified pairs (i, j, jaccard) with jaccard >= threshold and the max jaccard seen.
+
+    Buckets with ``max_bucket`` or more members are skipped to bound the number
+    of candidate pairs; their count is returned when ``return_skipped`` is set.
+    Callers should collapse exact duplicates first (layer1 does), because a
+    cluster of identical documents always lands in one bucket.
+    """
     mh = MinHasher(num_perm, seed)
     sigs = np.stack([mh.signature(s) for s in shingle_sets]) if shingle_sets else np.zeros((0, num_perm))
     rows = num_perm // bands
     candidates: Set[Tuple[int, int]] = set()
+    skipped = 0
     for b in range(bands):
         buckets: Dict[bytes, List[int]] = defaultdict(list)
         block = sigs[:, b * rows:(b + 1) * rows]
         for d in range(len(shingle_sets)):
             buckets[block[d].tobytes()].append(d)
         for members in buckets.values():
-            if 1 < len(members) < max_bucket:
+            if len(members) >= max_bucket:
+                skipped += 1
+            elif len(members) > 1:
                 for x in range(len(members)):
                     for y in range(x + 1, len(members)):
                         candidates.add((members[x], members[y]))
@@ -65,4 +74,6 @@ def near_duplicate_pairs(shingle_sets: Sequence[Set[str]], threshold: float = 0.
         best = max(best, jac)
         if jac >= threshold:
             pairs.append((i, j, jac))
+    if return_skipped:
+        return pairs, best, skipped
     return pairs, best

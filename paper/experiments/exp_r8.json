@@ -1,0 +1,134 @@
+{
+  "seed": 42,
+  "bootstrap": 1000,
+  "limit": 0.25,
+  "TurkPhish v1": {
+    "n": 7504,
+    "original": {
+      "excess": 0.0008,
+      "ci95": [
+        0.0002,
+        1.5
+      ],
+      "flag_point": false,
+      "flag_lower_bound": false
+    },
+    "shuffled": {
+      "excess": 0.0049,
+      "ci95": [
+        -0.0245,
+        0.0092
+      ],
+      "flag_point": false,
+      "flag_lower_bound": false
+    }
+  },
+  "TurkPhish v2": {
+    "n": 2653,
+    "original": {
+      "excess": 0.5342,
+      "ci95": [
+        0.5026,
+        0.5695
+      ],
+      "flag_point": true,
+      "flag_lower_bound": true
+    },
+    "shuffled": {
+      "excess": 0.0313,
+      "ci95": [
+        0.0006,
+        0.0834
+      ],
+      "flag_point": false,
+      "flag_lower_bound": false
+    }
+  },
+  "TTC-4900": {
+    "n": 4900,
+    "original": {
+      "excess": 0.3168,
+      "ci95": [
+        0.2958,
+        0.3418
+      ],
+      "flag_point": true,
+      "flag_lower_bound": true
+    },
+    "shuffled": {
+      "excess": -0.0201,
+      "ci95": [
+        -0.029,
+        0.0075
+      ],
+      "flag_point": false,
+      "flag_lower_bound": false
+    }
+  },
+  "Product reviews": {
+    "n": 20000,
+    "original": {
+      "excess": 0.0816,
+      "ci95": [
+        0.0407,
+        0.1315
+      ],
+      "flag_point": false,
+      "flag_lower_bound": false
+    },
+    "shuffled": {
+      "excess": 0.0111,
+      "ci95": [
+        -0.0219,
+        0.0608
+      ],
+      "flag_point": false,
+      "flag_lower_bound": false
+    }
+  },
+  "Sentiment (test)": {
+    "n": 20000,
+    "original": {
+      "excess": 0.0874,
+      "ci95": [
+        0.07,
+        0.105
+      ],
+      "flag_point": false,
+      "flag_lower_bound": false
+    },
+    "shuffled": {
+      "excess": 0.008,
+      "ci95": [
+        -0.0023,
+        0.0249
+      ],
+      "flag_point": false,
+      "flag_lower_bound": false
+    }
+  },
+  "AG News": {
+    "n": 20000,
+    "original": {
+      "excess": 0.2605,
+      "ci95": [
+        0.247,
+        0.2731
+      ],
+      "flag_point": true,
+      "flag_lower_bound": false
+    },
+    "shuffled": {
+      "excess": 0.0115,
+      "ci95": [
+        0.0003,
+        0.0257
+      ],
+      "flag_point": false,
+      "flag_lower_bound": false
+    }
+  },
+  "false_alarms_point": 0,
+  "false_alarms_lower_bound": 0,
+  "n_corpora": 6
+}

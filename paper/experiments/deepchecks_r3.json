@@ -1,0 +1,45 @@
+{
+  "deepchecks": "0.19.1",
+  "TTC-4900": {
+    "TextDuplicates": {
+      "percent_of_duplicates": 0.0736734693877551,
+      "n_duplicate_groups": 317
+    },
+    "ConflictingLabels": {
+      "percent_of_conflicting_samples": 0.00040816326530612246,
+      "n_conflicting_groups": null
+    },
+    "TrainTestSamplesMix_random_split": {
+      "ratio": 0.12551020408163266
+    },
+    "seconds": 8.4
+  },
+  "Sentiment (test)": {
+    "TextDuplicates": {
+      "percent_of_duplicates": 0.001286633309506846,
+      "n_duplicate_groups": 53
+    },
+    "ConflictingLabels": {
+      "percent_of_conflicting_samples": 0.0002859185132237312,
+      "n_conflicting_groups": null
+    },
+    "TrainTestSamplesMix_random_split": {
+      "ratio": 0.002144388849177984
+    },
+    "seconds": 56.4
+  },
+  "Product reviews (50k sample)": {
+    "TextDuplicates": {
+      "percent_of_duplicates": 0.0066411954151747166,
+      "n_duplicate_groups": 208
+    },
+    "ConflictingLabels": {
+      "percent_of_conflicting_samples": 0.0010201836330539498,
+      "n_conflicting_groups": null
+    },
+    "TrainTestSamplesMix_random_split": {
+      "ratio": 0.009900990099009901
+    },
+    "seconds": 87.4
+  }
+}
